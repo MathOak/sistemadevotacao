@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.css"/> 
+        <link rel="stylesheet" href="index.css"/> 
+        <script src="script.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+        <title>Eleições 2019</title>
+        <style>
+        div.confirma{
+            margin:center;
+            font-size:xx-large;
+            background-position:center;
+            color: #1e1e1f
+        }
+       
+        </style>
+        
+        <script type="text/javascript">
+			function enviar(valor){
+				document.formulario.acao.value=valor;
+				document.formulario.submit();
+			}
+		</script>
+	</head>
+
+    <body>
+
+    <div class="container">
+        <div class="card ">
+            <div class="face face1">
+                <div class="content">
+                    <img src="https://image.flaticon.com/icons/svg/1581/1581988.svg">
+                    <h3>Cabine de Votação</h3>
+                </div>
+            </div>
+               
+            <div class="face face2">
+                <div class="content">
+                
+                    
+                    <form name='formulario' action='Controller' method='post'>
+					<input type='hidden' name='acao'>                             
+					<button type="button" class="btn btn-primary" value='cabine' onclick='enviar(0)'>Encerrar Cabine</button>
+					</form>
+
+                </div>
+            </div>
+        </div> 
+	</div>	
+    </body>
+
+</html>
