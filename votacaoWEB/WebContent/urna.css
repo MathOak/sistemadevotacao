@@ -1,0 +1,227 @@
+*{
+    text-align: center;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background:#003e46;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: consolas;
+}
+
+
+.container{
+    width: 1000px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .card{
+    position: relative;
+    cursor: pointer;
+	margin: 0 auto;
+	
+}
+
+.container .card .face{
+    width: 300px;
+    height: 200px;
+    transition: 0.5s;
+	
+}
+
+.container .card .face.face1{
+    position: relative;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transform: translateY(100px);
+}
+
+
+
+.container .card:hover .face.face1{
+    background: #00bfff;
+    transform: translateY(0);
+}
+
+
+.container .card .face.face1 .content{
+    opacity: 0.2;
+    transition: 0.5s;
+}
+
+.container .card:hover .face.face1 .content{
+    opacity: 1;
+}
+
+.container .card .face.face1 .content img{
+    max-width: 100px;
+	max-height: 100px;
+	display: flex;
+	left:0;
+	top:00;
+	transform: translate(0, 0);
+}
+
+.container .card .face.face1 .content h3{
+    margin: 10px 0 0;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+
+.container .card .face.face2{
+    position: relative;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    transform: translateY(-100px);
+}
+
+
+
+.container .card:hover .face.face2{
+    transform: translateY(0);
+}
+
+.container .card .face.face2 .content p{
+    margin: 0;
+    padding: 0;
+}
+
+.container .card .face.face2 .content a{
+    margin: 15px 0 0;
+    display:  inline-block;
+    text-decoration: none;
+    font-weight: 900;
+    color: #333;
+    padding: 5px;
+    border: 1px solid #333;
+}
+
+.container .card .face.face2 .content a:hover{
+    background: #333;
+    color: #fff;
+}
+
+
+.blocos{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#urna{
+    background: lightgray;
+    margin: 10px 0px 10px 0px;
+    padding: 6px;
+    border: 1px solid #666666;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px black;
+}
+
+#prefeito{
+    width: 250px;
+    height: 250px;
+    
+    background: lightgray;
+}
+
+#nome{
+    display: none;
+}
+
+img{
+    width: 250px;
+    height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+	position: relative;
+	left:44%;
+	top:40%;
+	transform: translate(-50%, -50%);
+}
+
+#teclado{
+    margin-top: 5px;
+    width: 300px;
+}
+
+button{
+    box-shadow: 2px 2px 8px black;
+}
+
+.mais-maior{
+    max-width: 300px;
+    width: 350px;
+    font-size: 28pt;
+    background: white;
+}
+
+.btn-lgx{
+    width: 80px;
+    height: 70px;
+    font-size: 20pt;
+    margin: 5px;
+}
+
+.btn-lgx:focus-visible{
+    border: #eeeeee;
+}
+
+.centro{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.fonte{
+    font-size: 10pt;
+    padding: 0;
+    font-weight: bold;
+    color: #000000;
+}
+
+
+@media(max-width: 992px){
+    img{
+        width: 220px;
+    }
+}
+
+@media(max-width: 767px){   
+    #prefeito{
+        width: 300px;
+		height: 300px;
+        
+    }
+
+    img{
+        height: 250px;
+		width: 250px;
+        display: block;
+        
+    }
+}
+
+@media(max-width: 330px){
+    body{
+        width: 330px;
+    }
+}
