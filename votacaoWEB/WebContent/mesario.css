@@ -34,3 +34,10 @@ table{
 .row{
     display: block;
 }
+
+#botao-voltar{
+	
+	position:absolute;
+	left:47%;
+	
+}
