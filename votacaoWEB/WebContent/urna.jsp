@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <meta charset="utf-8">
@@ -93,7 +96,7 @@
                                 <form name='formulario' action='Controller' method='post'>
 									<input type='hidden' name='acao'>
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>                              
-                             		<button type="button" class="btn btn-primary" value='confirmar' onclick='enviar(2)'>Confirmar</button>
+                             		<button type="button" class="btn btn-primary" value='voto_val' onclick='enviar(2)'>Confirmar</button>
                              	</form>
                             </div>
                         </div>

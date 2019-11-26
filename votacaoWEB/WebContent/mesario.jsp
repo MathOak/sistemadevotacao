@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <meta charset="utf-8">
@@ -23,10 +26,11 @@
                     <input type="hidden" name="acao" >
                         <table border='6'>
                         <tr><td>Liberar eleitor para votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" value="libera_eleitor" onclick="enviar()">Liberar Eleitor</button></td></tr>
-                        <tr><td>Cabine de votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" value="libera_cabine" onclick="enviar()">Liberar Cabine </button></td></tr>
-                        <tr><td>Cabine de votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" value="encerra_cabine" onclick="enviar()">Encerrar Cabine</button></td></tr>
+                        <tr><td>Cabine de votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" value="liberar_cabine" onclick="enviar()">Liberar Cabine </button></td></tr>
+                        <tr><td>Cabine de votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" value="encerrar_cabine" onclick="enviar()">Encerrar Cabine</button></td></tr>
                         <tr><td>Relatorio de votos:</td><td><button type="button" class="btn btn--white mesmo-tamanho" value="rel" onclick="enviar()">Total de Votos</button></td></tr>
                         </table><br>
+						</form>
 						
 						<form id="botao-voltar">
 						<input type="button" value="Voltar" onClick="history.go(-1)">
