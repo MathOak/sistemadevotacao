@@ -93,7 +93,7 @@
                                 <h1><span id="nomeModal">Anular Voto</span></h1>
                             </div>
                             <div class="modal-footer">
-                                <form name='formulario' action='Controller' method='post'>
+                                <form name='formulario' action='Controlador' method='post'>
 									<input type='hidden' name='acao'>
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>                              
                              		<button type="button" class="btn btn-primary" value='voto_val' onclick='enviar(2)'>Confirmar</button>

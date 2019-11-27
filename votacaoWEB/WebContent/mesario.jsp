@@ -22,7 +22,7 @@
 		<div class="container" align="center">
             <div class="row" >
                 <div class="col-sm-12 col-md-6" >
-		            <form name="formulario" action="Controller" method="post">
+		            <form name="formulario" action="Controlador" method="post">
                     <input type="hidden" name="acao" >
                         <table border='6'>
                         <tr><td>Liberar eleitor para votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" value="libera_eleitor" onclick="enviar()">Liberar Eleitor</button></td></tr>

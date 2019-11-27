@@ -42,7 +42,7 @@
 		
 		<div id="pai">
 			<div id="div1">
-			<form name="formulario" action="Controller" method="post">
+			<form name="formulario" action="Controlador" method="post">
 			<input type="hidden" name="acao" value="inicio_eleitor">
               <table><tr><td> Titulo: <input type="text" name="titulo" title="Insira corretamente o Titulo de Eleitor" required pattern="^\d{12}$">
 								<button type="submit">Entrar</button></td></tr>
@@ -51,7 +51,7 @@
 			</div>
 			   
 			<div id="div2">	  
-			<form name="formulario" action="Controller" method="post">
+			<form name="formulario" action="Controlador" method="post">
 			<input type="hidden" name="acao" value="inicio_mesario">
 			  <table>
 				<tr><td>Titulo:</td><td colspan='2'><input type="text" name="titulo" title="Insira corretamente o Titulo de Eleitor" required pattern="^\d{12}$"></td><td></td></tr>			
