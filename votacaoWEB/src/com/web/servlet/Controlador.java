@@ -37,19 +37,19 @@ public class Controlador extends HttpServlet {
 		// TODO Auto-generated method stub
 		String acao = request.getParameter("acao");
 		
-		if(acao.contentEquals("inicio_eleitor")) {
+		if(acao.equals("inicio_eleitor")) {
 			request.getRequestDispatcher("urna.jsp").forward(request, response);
-		} else if(acao.contentEquals("inicio_mesario")) {
+		} else if(acao.equals("inicio_mesario")) {
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
-		} else if(acao.contentEquals("liberar_eleitor")) {
+		} else if(acao.equals("liberar_eleitor")) {
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
-		} else if(acao.contentEquals("liberar_cabine")) {
+		} else if(acao.equals("liberar_cabine")) {
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
-		} else if(acao.contentEquals("encerrar_cabine")) {
+		} else if(acao.equals("encerrar_cabine")) {
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
-		} else if(acao.contentEquals("rel")) {
+		} else if(acao.equals("rel")) {
 			request.getRequestDispatcher("relatorio.jsp").forward(request, response);
-		} else if(acao.contentEquals("voto_val")) {
+		} else if(acao.equals("voto_val")) {
 			request.getRequestDispatcher("fim.jsp").forward(request, response);
 		}
 	}
