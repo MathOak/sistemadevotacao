@@ -2204,10 +2204,10 @@ textarea.form-control {
 }
 
 .btn:hover {
-  color: red;
+  color: #3524ff;
   text-decoration: none;
   border: 2px solid;
-  border-color: red;
+  border-color:#3524ff;
 }
 
 .btn:focus, .btn.focus {
@@ -5560,6 +5560,7 @@ a.close.disabled {
 
 .modal-footer > :not(:last-child) {
   margin-right: .25rem;
+  margin-top: -16;
 }
 
 .modal-scrollbar-measure {

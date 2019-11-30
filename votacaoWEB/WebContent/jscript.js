@@ -3,7 +3,8 @@ var cont = 0;
 
 function valor(v){
     cont++;    
-
+	
+	var numero = document.querySelector('#numero')
     var tela = document.querySelector('#tela')
     var foto = document.querySelector('#foto')
     var nome = document.querySelector('#nome')
@@ -11,7 +12,7 @@ function valor(v){
     
     if(cont <= 2){
         tela.value += v;
-        if(tela.value != 52 || tela.value != 22 || tela.value != 13){
+        if(tela.value != 11 || tela.value != 22 || tela.value != 33 || tela.value != 44 || tela.value != 55){
 			if(cont == 1){
 				nome.innerHTML = ""
 			}else
@@ -20,40 +21,67 @@ function valor(v){
             nome.style.display = "block"
             nomeModal.innerHTML = "Anular Voto";
         }
-        if(tela.value == 52){
+        if(tela.value == 11){
+			numero.style.display = "block"
             foto.style.display = "block"
             nome.style.display = "block"
             foto.src = 'img/bob.jpg';
             nome.innerHTML = "Bob Esponja";
-            nomeModal.innerHTML = "Bob Esponja <br> 52";
+			numero.innerHTML = "11";
+            nomeModal.innerHTML = "Bob Esponja <br> 11";
 			
         }
         if(tela.value == 22){
+			numero.style.display = "block"
             foto.style.display = "block"
             nome.style.display = "block"
-            foto.src = 'img/tilapia.jpg';
-            nome.innerHTML = "Tilapia"
-            nomeModal.innerHTML = "Tilapia"
+            foto.src = 'img/lula.jpg';
+            nome.innerHTML = "Lula Molusco";
+			numero.innerHTML = "22";
+            nomeModal.innerHTML = "Lula Molusco <br> 22"
         }
-        if(tela.value == 13){
+        if(tela.value == 33){
+			numero.style.display = "block"
             nome.style.display = "block"
             foto.style.display = "block"
-            foto.src = 'img/pablo.jpg';
-            nome.innerHTML = "Pabllo Vittar"
-            nomeModal.innerHTML = "Pablo Vitar"
+            foto.src = 'img/patrick.jpg';
+            nome.innerHTML = "Patrick Estrela";
+			numero.innerHTML = "33";
+            nomeModal.innerHTML = "Patrick Estrela <br> 33"
+        }
+		if(tela.value == 44){
+			numero.style.display = "block"
+            nome.style.display = "block"
+            foto.style.display = "block"
+            foto.src = 'img/siri.jpg';
+            nome.innerHTML = "Sirigueijo";
+			numero.innerHTML = "44";
+            nomeModal.innerHTML = "Sirigueijo <br> 44"
+        }
+		if(tela.value == 55){
+			numero.style.display = "block"
+            nome.style.display = "block"
+            foto.style.display = "block"
+            foto.src = 'img/gary.jpg';
+            nome.innerHTML = "Gary";
+			numero.innerHTML = "55";
+            nomeModal.innerHTML = "Gary <br> 55"
         }
     }
 }
 
 function corrigir(){
+	var numero = document.querySelector('#numero')
     var nome = document.querySelector('#nome')
     var nomeModal = document.querySelector('#nomeModal')
     var tela = document.querySelector('#tela')
     var foto = document.querySelector('#foto')
-    tela.value ='';
+    tela.value ="";
     nome.style.display = "none"
+	numero.style.display = "none"
     foto.style.display = "none"
     nomeModal.style.display = "";
+	
     cont = 0;
 }
 

@@ -16,12 +16,17 @@ img{
 }
 
 td{
-    border-color: white;
+   
     font-size: 20px;
+	background-color: #a8a8a8;
+	border: 0px ;
+	border-color:#003e46;
 }
 
 table{
     border-color: white;
+	border-collapse: separate !important;
+	border-radius: 6px !important;
     
 }
 
