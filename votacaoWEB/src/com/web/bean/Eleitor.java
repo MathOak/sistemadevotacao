@@ -1,4 +1,4 @@
-package com.suam.bean;
+package com.web.bean;
 
 public class Eleitor {
 	

@@ -1,4 +1,4 @@
-package com.suam.service;
+package com.web.service;
 
 import java.sql.SQLException;
 import java.sql.Connection;
@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.suam.bean.Eleitor;
-import com.suam.factory.ConnectionFactory;
+import com.web.bean.Eleitor;
+import com.web.factory.ConnectionFactory;
 
 public class EleitorService {
 

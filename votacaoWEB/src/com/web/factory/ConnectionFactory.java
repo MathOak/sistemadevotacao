@@ -1,4 +1,4 @@
-package com.suam.factory;
+package com.web.factory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
