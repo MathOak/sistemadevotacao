@@ -1,0 +1,11 @@
+Candidato:
+inserir(votos)//depois de votar
+consultar(nome, num)//carregar informações na urna
+consultar(nome, num, votos)//relatorio
+Eleitor:
+inserir(data, status)//mesario
+inserir(hora)//voto
+consultar(titulo, status, data, hora)//liberar pra votar
+Mesario:
+consultar(titulo,senha)//mesario login
+consultar(nome)//pagina do mesario
