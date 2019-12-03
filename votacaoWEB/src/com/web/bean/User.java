@@ -1,5 +1,7 @@
 package com.web.bean;
 
+import com.web.service.EleitorService;
+
 public class User {
 	private String titulo;
 	private String nome;
@@ -16,12 +18,12 @@ public class User {
 	public User(){
 	}
 
-	public String getLogin() {
+	public String getTitulo() {
 		return titulo;
 	}
 
-	public void setLogin(String login) {
-		this.titulo = login;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public String getNome() {
@@ -37,5 +39,16 @@ public class User {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public boolean autenticou () {
+		try {
+			if(EleitorService.autenticar(getTitulo())) {
+				Eleitor man = new Eleitor();
+				return true;
+			}else
+				return false;
+		}catch (Exception e) {
+			return false;
+		}
 	}
 }

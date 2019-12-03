@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.web.bean.User;
+
 /**
  * Servlet implementation class Controlador
  */
@@ -38,7 +40,15 @@ public class Controlador extends HttpServlet {
 		String acao = request.getParameter("acao");
 		
 		if(acao.equals("inicio_eleitor")) {
-			request.getRequestDispatcher("urna.jsp").forward(request, response);
+			//chama user> do user chamar eleitor
+			String titulo = request.getParameter("titulo");
+			User eleitor = new User(titulo);
+			if(eleitor.autenticou()) {
+				request.getSession().setMaxInactiveInterval(300);
+				
+				request.getRequestDispatcher("urna.jsp").forward(request, response);
+			}
+			
 		} else if(acao.equals("inicio_mesario")) {
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
 		} else if(acao.equals("liberar_eleitor")) {
