@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.web.bean.Eleitor;
 import com.web.bean.User;
 
 /**
@@ -43,14 +44,27 @@ public class Controlador extends HttpServlet {
 			//chama user> do user chamar eleitor
 			String titulo = request.getParameter("titulo");
 			User eleitor = new User(titulo);
-			if(eleitor.autenticou()) {
+			if(eleitor.autenticouEleitor()) {
 				request.getSession().setMaxInactiveInterval(300);
-				
+				request.setAttribute("usuario", eleitor.getEleitor());
 				request.getRequestDispatcher("urna.jsp").forward(request, response);
+			}else {
+				request.setAttribute("erro", "1");
+				request.getRequestDispatcher("inicio.jsp").forward(request, response);
 			}
 			
 		} else if(acao.equals("inicio_mesario")) {
-			request.getRequestDispatcher("mesario.jsp").forward(request, response);
+			String titulo = request.getParameter("titulo");
+			String senha = request.getParameter("senha");
+			User mesario = new User(titulo, senha);
+			if(mesario.autenticouMesario()) {
+				request.setAttribute("usuario", mesario.getEleitor());
+				request.getRequestDispatcher("mesario.jsp").forward(request, response);
+			}else {
+				request.setAttribute("erro", "2");
+				request.getRequestDispatcher("inicio.jsp").forward(request, response);
+			}
+			
 		} else if(acao.equals("liberar_eleitor")) {
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
 		} else if(acao.equals("liberar_cabine")) {

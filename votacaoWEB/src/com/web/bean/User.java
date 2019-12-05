@@ -1,11 +1,19 @@
 package com.web.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.web.service.EleitorService;
+import com.web.service.MesarioService;
 
 public class User {
 	private String titulo;
 	private String nome;
 	private String senha;
+	Eleitor man = new Eleitor();
+	Mesario mes = new Mesario();
+	List<Eleitor> eleitorList = new ArrayList();
+	List<Mesario> mesarioList = new ArrayList();
 	
 	public User(String titulo){
 		this.titulo = titulo;
@@ -40,15 +48,34 @@ public class User {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public boolean autenticou () {
+	public boolean autenticouEleitor () {
 		try {
 			if(EleitorService.autenticar(getTitulo())) {
-				Eleitor man = new Eleitor();
+				eleitorList = EleitorService.consultar(getTitulo());
+				man = eleitorList.get(eleitorList.size()-1);
 				return true;
 			}else
 				return false;
 		}catch (Exception e) {
 			return false;
 		}
+	}
+	public Eleitor getEleitor(){
+		return man;
+	}
+	public boolean autenticouMesario () {
+		try {
+			if(MesarioService.autenticar(getTitulo(), getSenha())) {
+				mesarioList = MesarioService.consultar(getTitulo(), getSenha());
+				mes = mesarioList.get(mesarioList.size()-1);
+				return true;
+			}else
+				return false;
+		}catch (Exception e) {
+			return false;
+		}
+	}
+	public Mesario getMesario(){
+		return mes;
 	}
 }
