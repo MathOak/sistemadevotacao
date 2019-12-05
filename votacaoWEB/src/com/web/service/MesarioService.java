@@ -34,7 +34,7 @@ public class MesarioService {
 			e.printStackTrace();
 			throw new SQLException();
 		} finally {
-			// fechar a conex„o
+			// fechar a conex√£o
 			conexao.close();
 		}
 	}
@@ -42,7 +42,6 @@ public class MesarioService {
 	public static List<Mesario> consultar(String Titulo_mesario, String Senha) throws SQLException {
 		Connection conexao = ConnectionFactory.getConnection();
 		List<Mesario> listaMesario = new ArrayList<Mesario>();
-		
 		String sql = "SELECT TituloMesario,senha FROM Mesario where TituloMesario=? and senha=?";
 
 		try {
@@ -65,7 +64,7 @@ public class MesarioService {
 			// Erro, provoca um Rollback (volta ao estado anterior do banco)
 			conexao.rollback();
 		} finally {
-			// fechar a conex„o
+			// fechar a conex√£o
 			conexao.close();
 		}
 		
@@ -109,7 +108,7 @@ public class MesarioService {
 			// Erro, provoca um Rollback (volta ao estado anterior do banco)
 			conexao.rollback();
 		} finally {
-			// fechar a conex„o
+			// fechar a conex√£o
 			conexao.close();
 		}
 		
