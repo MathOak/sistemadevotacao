@@ -74,6 +74,7 @@ public class Controlador extends HttpServlet {
 			if(usuario.autenticouEleitorLiberar(titulo)) {
 				modEleitor = usuario.getEleitor();
 				modEleitor.setStatus("aguardando");
+			}else {
 				
 			}
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
