@@ -48,6 +48,7 @@ public class User {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	//ELEITOR
 	public boolean autenticouEleitor () {
 		try {
 			if(EleitorService.autenticar(getTitulo())) {
@@ -60,9 +61,29 @@ public class User {
 			return false;
 		}
 	}
+	public boolean autenticouEleitorLiberar (String titulo) {
+		try {
+			if(EleitorService.autenticarLiberar(titulo)) {
+				eleitorList = EleitorService.consultar(getTitulo());
+				man = eleitorList.get(eleitorList.size()-1);
+				return true;
+			}else
+				return false;
+		}catch (Exception e) {
+			return false;
+		}
+	}
+	public void salvarEleitor(Eleitor el) {
+		try{
+			EleitorService.inserir(el);
+		}catch (Exception e) {
+			
+		}
+	}
 	public Eleitor getEleitor(){
 		return man;
 	}
+	//MESARIO
 	public boolean autenticouMesario () {
 		try {
 			if(MesarioService.autenticar(getTitulo(), getSenha())) {

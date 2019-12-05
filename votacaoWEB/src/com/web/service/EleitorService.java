@@ -77,8 +77,22 @@ public class EleitorService {
 	public static boolean autenticar(String Titulo_eleitor) throws SQLException {
 		
 		List<Eleitor> listaEleitor = consultar(Titulo_eleitor);;
+		Eleitor valida = new Eleitor();
+		valida = listaEleitor.get(listaEleitor.size()-1);
+		if(!listaEleitor.isEmpty() && valida.getStatus().contentEquals("aguardando")){
+			return true;
+		} 
 		
-		if(!listaEleitor.isEmpty()){
+		else{
+			return false;
+		}
+	}
+	public static boolean autenticarLiberar(String Titulo_eleitor) throws SQLException {
+		
+		List<Eleitor> listaEleitor = consultar(Titulo_eleitor);;
+		Eleitor valida = new Eleitor();
+		valida = listaEleitor.get(listaEleitor.size()-1);
+		if(!listaEleitor.isEmpty() && valida.getStatus().contentEquals("bloqueado")){
 			return true;
 		} 
 		

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.web.bean.Eleitor;
 import com.web.bean.User;
+import com.web.service.EleitorService;
 
 /**
  * Servlet implementation class Controlador
@@ -66,6 +67,15 @@ public class Controlador extends HttpServlet {
 			}
 			
 		} else if(acao.equals("liberar_eleitor")) {
+			String titulo = request.getParameter("titulo");
+			User usuario = new User();
+			Eleitor modEleitor = new Eleitor();
+			usuario = (User) request.getAttribute("usuario");
+			if(usuario.autenticouEleitorLiberar(titulo)) {
+				modEleitor = usuario.getEleitor();
+				modEleitor.setStatus("aguardando");
+				
+			}
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
 		} else if(acao.equals("liberar_cabine")) {
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
@@ -74,6 +84,7 @@ public class Controlador extends HttpServlet {
 		} else if(acao.equals("rel")) {
 			request.getRequestDispatcher("relatorio.jsp").forward(request, response);
 		} else if(acao.equals("voto_val")) {
+			String idCandidato = request.getParameter("");
 			request.getRequestDispatcher("fim.jsp").forward(request, response);
 		}
 	}
