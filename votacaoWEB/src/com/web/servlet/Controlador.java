@@ -58,7 +58,7 @@ public class Controlador extends HttpServlet {
 			String titulo = request.getParameter("titulo");
 			String senha = request.getParameter("senha");
 			User mesario = new User(titulo, senha);
-			if(mesario.autenticouMesario()) {
+			if(mesario.autenticouMesario(mesario.getTitulo(), mesario.getSenha())) {
 				request.setAttribute("usuario", mesario.getEleitor());
 				request.getRequestDispatcher("mesario.jsp").forward(request, response);
 			}else {

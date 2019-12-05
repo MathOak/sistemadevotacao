@@ -84,15 +84,16 @@ public class User {
 		return man;
 	}
 	//MESARIO
-	public boolean autenticouMesario () {
+	public boolean autenticouMesario (String titulo, String senha) {
 		try {
-			if(MesarioService.autenticar(getTitulo(), getSenha())) {
-				mesarioList = MesarioService.consultar(getTitulo(), getSenha());
+			if(MesarioService.autenticar(titulo, senha)) {
+				mesarioList = MesarioService.consultar(titulo, senha);
 				mes = mesarioList.get(mesarioList.size()-1);
 				return true;
 			}else
 				return false;
 		}catch (Exception e) {
+			System.out.println("Erro de SQL"+ e.toString());
 			return false;
 		}
 	}
