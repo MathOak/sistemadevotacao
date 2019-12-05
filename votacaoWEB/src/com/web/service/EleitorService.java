@@ -35,12 +35,13 @@ public class EleitorService {
 			e.printStackTrace();
 			throw new SQLException();
 		} finally {
-			// fechar a conex„o
+			// fechar a conex√£o
 			conexao.close();
 		}
 	}
 	
 	public static List<Eleitor> consultar(String Titulo_eleitor) throws SQLException {
+
 		Connection conexao = ConnectionFactory.getConnection();
 		List<Eleitor> listaEleitor = new ArrayList<Eleitor>();
 		
@@ -67,7 +68,7 @@ public class EleitorService {
 			// Erro, provoca um Rollback (volta ao estado anterior do banco)
 			conexao.rollback();
 		} finally {
-			// fechar a conex„o
+			// fechar a conex√£o
 			conexao.close();
 		}
 		
@@ -93,6 +94,56 @@ public class EleitorService {
 		Eleitor valida = new Eleitor();
 		valida = listaEleitor.get(listaEleitor.size()-1);
 		if(!listaEleitor.isEmpty() && valida.getStatus().contentEquals("bloqueado")){
+			return true;
+		} 
+		
+		else{
+			return false;
+		}
+	}
+	
+	public static List<Eleitor> consultar(String Titulo_eleitor, String Data, String Status, String Hora) throws SQLException {
+		Connection conexao = ConnectionFactory.getConnection();
+		List<Eleitor> listaEleitor = new ArrayList<Eleitor>();
+		
+		String sql = "SELECT TituloEleitor,data,status,hora FROM Eleitor where TituloEleitor=? and data=? status=? hora=?";
+
+		try {
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, Titulo_eleitor);
+			ps.setString(2, Data);
+			ps.setString(3, Status);
+			ps.setString(4,  Hora);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			
+			while(rs.next()){
+				Eleitor eleitor = new Eleitor();
+				eleitor.setTitulo_eleitor(rs.getString("TituloEleitor"));
+				eleitor.setData(rs.getString("data"));
+				eleitor.setStatus(rs.getString("status"));
+				eleitor.setHora(rs.getString("hora"));
+				listaEleitor.add(eleitor);
+			}
+			
+			conexao.commit();
+		} catch (SQLException e) {
+			// Erro, provoca um Rollback (volta ao estado anterior do banco)
+			conexao.rollback();
+		} finally {
+			// fechar a conex√£o
+			conexao.close();
+		}
+		
+		return listaEleitor;
+	}
+	
+	public static boolean autenticar(String Titulo_eleitor, String Data, String Status, String Hora) throws SQLException {
+		
+		List<Eleitor> listaEleitor = consultar(Titulo_eleitor, Data, Status, Hora);;
+		
+		if(!listaEleitor.isEmpty()){
 			return true;
 		} 
 		

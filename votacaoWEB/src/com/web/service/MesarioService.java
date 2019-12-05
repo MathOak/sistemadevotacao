@@ -34,7 +34,7 @@ public class MesarioService {
 			e.printStackTrace();
 			throw new SQLException();
 		} finally {
-			// fechar a conex„o
+			// fechar a conex√£o
 			conexao.close();
 		}
 	}
@@ -42,13 +42,12 @@ public class MesarioService {
 	public static List<Mesario> consultar(String Titulo_mesario, String Senha) throws SQLException {
 		Connection conexao = ConnectionFactory.getConnection();
 		List<Mesario> listaMesario = new ArrayList<Mesario>();
-		
-		String sql = "SELECT TituloMesario,NomeMesario,zonaEleitoral,senha FROM Mesario where TituloMesario=? senha=?";
+		String sql = "SELECT TituloMesario,senha FROM Mesario where TituloMesario=? and senha=?";
 
 		try {
 			PreparedStatement ps = conexao.prepareStatement(sql);
 			ps.setString(1, Titulo_mesario);
-			ps.setString(4, Senha);
+			ps.setString(2, Senha);
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -56,8 +55,6 @@ public class MesarioService {
 			while(rs.next()){
 				Mesario mesario = new Mesario();
 				mesario.setTitulo_mesario(rs.getString("TituloMesario"));
-				mesario.setNome_mesario(rs.getString("NomeMesario"));
-				mesario.setZona_eleitoral(rs.getString("zonaEleitoral"));
 				mesario.setSenha(rs.getString("senha"));
 				listaMesario.add(mesario);
 			}
@@ -67,7 +64,7 @@ public class MesarioService {
 			// Erro, provoca um Rollback (volta ao estado anterior do banco)
 			conexao.rollback();
 		} finally {
-			// fechar a conex„o
+			// fechar a conex√£o
 			conexao.close();
 		}
 		
@@ -77,6 +74,50 @@ public class MesarioService {
 	public static boolean autenticar(String Titulo_mesario, String Senha) throws SQLException {
 		
 		List<Mesario> listaMesario = consultar(Titulo_mesario, Senha);;
+		
+		if(!listaMesario.isEmpty()){
+			return true;
+		} 
+		
+		else{
+			return false;
+		}
+	}
+	
+	public static List<Mesario> consultar(String Nome_mesario) throws SQLException {
+		Connection conexao = ConnectionFactory.getConnection();
+		List<Mesario> listaMesario = new ArrayList<Mesario>();
+		
+		String sql = "SELECT NomeMesario FROM Mesario where NomeMesario=?";
+
+		try {
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, Nome_mesario);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			
+			while(rs.next()){
+				Mesario mesario = new Mesario();
+				mesario.setNome_mesario(rs.getString("NomeMesario"));
+				listaMesario.add(mesario);
+			}
+			
+			conexao.commit();
+		} catch (SQLException e) {
+			// Erro, provoca um Rollback (volta ao estado anterior do banco)
+			conexao.rollback();
+		} finally {
+			// fechar a conex√£o
+			conexao.close();
+		}
+		
+		return listaMesario;
+	}
+	
+	public static boolean autenticar(String Nome_mesario) throws SQLException {
+		
+		List<Mesario> listaMesario = consultar(Nome_mesario);;
 		
 		if(!listaMesario.isEmpty()){
 			return true;

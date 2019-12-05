@@ -38,6 +38,29 @@ public class CandidatoService {
 		}
 	}
 	
+	public static void inserirV(Candidato candidato) throws SQLException {
+		Connection conexao = ConnectionFactory.getConnection();
+		
+		String sql = "INSERT INTO Candidato (Votos) VALUES (?)";
+
+		try {
+			
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, candidato.getVotos());
+			
+			ps.execute();
+			conexao.commit();
+		} catch (SQLException e) {
+			// Erro, provoca um Rollback (volta ao estado anterior do banco)
+			conexao.rollback();
+			e.printStackTrace();
+			throw new SQLException();
+		} finally {
+			// fechar a conexão
+			conexao.close();
+		}
+	}
+	
 	public static List<Candidato> consultar(String Num_candidato, String Nome_candidato, String Votos) throws SQLException {
 		Connection conexao = ConnectionFactory.getConnection();
 		List<Candidato> listaCandidato = new ArrayList<Candidato>();
@@ -76,6 +99,52 @@ public class CandidatoService {
 	public static boolean autenticar(String Num_candidato, String Nome_candidato, String Votos) throws SQLException {
 		
 		List<Candidato> listaCandidato = consultar(Num_candidato, Nome_candidato, Votos);;
+		
+		if(!listaCandidato.isEmpty()){
+			return true;
+		} 
+		
+		else{
+			return false;
+		}
+	}
+	
+	public static List<Candidato> consultar(String Num_candidato, String Nome_candidato) throws SQLException {
+		Connection conexao = ConnectionFactory.getConnection();
+		List<Candidato> listaCandidato = new ArrayList<Candidato>();
+		
+		String sql = "SELECT NumeroCandidato,NomeCandidato FROM Candidato where NumeroCandidato=? and NomeCandidato=?";
+
+		try {
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, Num_candidato);
+			ps.setString(2, Nome_candidato);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			
+			while(rs.next()){
+				Candidato candidato = new Candidato();
+				candidato.setNum_candidato(rs.getString("NumeroCandidato"));
+				candidato.setNome_candidato(rs.getString("NomeCandidato"));
+				listaCandidato.add(candidato);
+			}
+			
+			conexao.commit();
+		} catch (SQLException e) {
+			// Erro, provoca um Rollback (volta ao estado anterior do banco)
+			conexao.rollback();
+		} finally {
+			// fechar a conexão
+			conexao.close();
+		}
+		
+		return listaCandidato;
+	}
+	
+	public static boolean autenticar(String Num_candidato, String Nome_candidato) throws SQLException {
+		
+		List<Candidato> listaCandidato = consultar(Num_candidato, Nome_candidato);;
 		
 		if(!listaCandidato.isEmpty()){
 			return true;
