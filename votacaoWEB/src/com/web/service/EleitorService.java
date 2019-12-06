@@ -39,6 +39,33 @@ public class EleitorService {
 		}
 	}
 	
+	public static void update(Eleitor eleitor) throws SQLException {
+		Connection conexao = ConnectionFactory.getConnection();
+		
+		String sql = "UPDATE eleitor set `status`= ?, `data`= ?, `hora` = ? where TituloEleitor = ?";
+
+		try {
+			
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, eleitor.getStatus());
+			ps.setString(2, eleitor.getData());
+			ps.setString(3, eleitor.getHora());
+			ps.setString(4, eleitor.getTitulo_eleitor());
+			
+			
+			
+			ps.execute();
+			conexao.commit();
+		} catch (SQLException e) {
+			// Erro, provoca um Rollback (volta ao estado anterior do banco)
+			conexao.rollback();
+			e.printStackTrace();
+			throw new SQLException();
+		} finally {
+			// fechar a conexão
+			conexao.close();
+		}
+	}
 	public static List<Eleitor> consultar(String Titulo_eleitor) throws SQLException {
 		Connection conexao = ConnectionFactory.getConnection();
 		List<Eleitor> listaEleitor = new ArrayList<Eleitor>();
@@ -91,7 +118,7 @@ public class EleitorService {
 		List<Eleitor> listaEleitor = consultar(Titulo_eleitor);;
 		Eleitor valida = new Eleitor();
 		valida = listaEleitor.get(listaEleitor.size()-1);
-		if(!listaEleitor.isEmpty() && valida.getStatus().contentEquals("bloqueado")){
+		if(!listaEleitor.isEmpty() && valida.getStatus().equals("bloqueado") && valida.getData().equals("NULL")){
 			return true;
 		} 
 		

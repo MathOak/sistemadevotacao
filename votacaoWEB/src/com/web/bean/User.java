@@ -75,7 +75,7 @@ public class User {
 	}
 	public void salvarEleitor(Eleitor el) {
 		try{
-			EleitorService.inserir(el);
+			EleitorService.update(el);
 		}catch (Exception e) {
 			
 		}

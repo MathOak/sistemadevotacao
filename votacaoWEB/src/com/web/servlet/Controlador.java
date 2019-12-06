@@ -43,16 +43,16 @@ public class Controlador extends HttpServlet {
 		
 		if(acao.equals("inicio_eleitor")) {
 			//chama user> do user chamar eleitor
-			/*String titulo = request.getParameter("titulo");
+			String titulo = request.getParameter("titulo");
 			User eleitor = new User(titulo);
 			if(eleitor.autenticouEleitor()) {
 				request.getSession().setMaxInactiveInterval(300);
-				request.setAttribute("usuario", eleitor.getEleitor());*/
+				request.setAttribute("usuario", eleitor.getEleitor());
 				request.getRequestDispatcher("urna.jsp").forward(request, response);
-			/*}else {
+			}else {
 				request.setAttribute("erro", "1");
 				request.getRequestDispatcher("inicio.jsp").forward(request, response);
-			}*/
+			}
 			
 		} else if(acao.equals("inicio_mesario")) {
 			String titulo = request.getParameter("titulo");
@@ -74,8 +74,13 @@ public class Controlador extends HttpServlet {
 			if(usuario.autenticouEleitorLiberar(titulo)) {
 				modEleitor = usuario.getEleitor();
 				modEleitor.setStatus("aguardando");
+				usuario.salvarEleitor(modEleitor);
+				request.setAttribute("retorno", "Eleitor Liberado");
+				request.getRequestDispatcher("mesario.jsp").forward(request, response);
+			
 			}else {
-				
+				request.setAttribute("erro", "3");
+				request.getRequestDispatcher("mesario.jsp").forward(request, response);
 			}
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
 		} else if(acao.equals("liberar_cabine")) {
