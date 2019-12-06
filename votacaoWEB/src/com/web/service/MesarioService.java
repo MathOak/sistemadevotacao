@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,18 +38,16 @@ public class MesarioService {
 		}
 	}
 	
-	public static List<Mesario> consultar(String Titulo_mesario, String Nome_mesario, String Zona_eleitoral, String Senha) throws SQLException {
+	public static List<Mesario> consultar(String Titulo_mesario, String Senha) throws SQLException {
 		Connection conexao = ConnectionFactory.getConnection();
 		List<Mesario> listaMesario = new ArrayList<Mesario>();
 		
-		String sql = "SELECT TituloMesario,NomeMesario,zonaEleitoral,senha FROM Mesario where TituloMesario=? and NomeMesario=? and zonaEleitoral=? senha=?";
+		String sql = "SELECT TituloMesario,NomeMesario,zonaEleitoral,senha FROM Mesario where TituloMesario=? and senha=?";
 
 		try {
 			PreparedStatement ps = conexao.prepareStatement(sql);
 			ps.setString(1, Titulo_mesario);
-			ps.setString(2, Nome_mesario);
-			ps.setString(3, Zona_eleitoral);
-			ps.setString(4, Senha);
+			ps.setString(2, Senha);
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -76,9 +73,9 @@ public class MesarioService {
 		return listaMesario;
 	}
 	
-	public static boolean autenticar(String Titulo_mesario, String Nome_mesario, String Zona_eleitoral, String Senha) throws SQLException {
+	public static boolean autenticar(String Titulo_mesario, String Senha) throws SQLException {
 		
-		List<Mesario> listaMesario = consultar(Titulo_mesario, Nome_mesario, Zona_eleitoral, Senha);;
+		List<Mesario> listaMesario = consultar(Titulo_mesario, Senha);;
 		
 		if(!listaMesario.isEmpty()){
 			return true;

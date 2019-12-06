@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,20 +39,42 @@ public class EleitorService {
 		}
 	}
 	
-	public static List<Eleitor> consultar(String Titulo_eleitor, String Nome_eleitor, String Data, String Status, String Hora) throws SQLException {
+	public static void update(Eleitor eleitor) throws SQLException {
+		Connection conexao = ConnectionFactory.getConnection();
+		
+		String sql = "UPDATE eleitor set `status`= ?, `data`= ?, `hora` = ? where TituloEleitor = ?";
+
+		try {
+			
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, eleitor.getStatus());
+			ps.setString(2, eleitor.getData());
+			ps.setString(3, eleitor.getHora());
+			ps.setString(4, eleitor.getTitulo_eleitor());
+			
+			
+			
+			ps.execute();
+			conexao.commit();
+		} catch (SQLException e) {
+			// Erro, provoca um Rollback (volta ao estado anterior do banco)
+			conexao.rollback();
+			e.printStackTrace();
+			throw new SQLException();
+		} finally {
+			// fechar a conexão
+			conexao.close();
+		}
+	}
+	public static List<Eleitor> consultar(String Titulo_eleitor) throws SQLException {
 		Connection conexao = ConnectionFactory.getConnection();
 		List<Eleitor> listaEleitor = new ArrayList<Eleitor>();
 		
-		String sql = "SELECT TituloEleitor,NomeEleitor,data,status,hora FROM Eleitor where TituloEleitor=? and NomeEleitor=? and data=? status=? hora=?";
+		String sql = "SELECT TituloEleitor,NomeEleitor,data,status,hora FROM Eleitor where TituloEleitor=?";
 
 		try {
 			PreparedStatement ps = conexao.prepareStatement(sql);
 			ps.setString(1, Titulo_eleitor);
-			ps.setString(2, Nome_eleitor);
-			ps.setString(3, Data);
-			ps.setString(4, Status);
-			ps.setString(5,  Hora);
-			
 			ResultSet rs = ps.executeQuery();
 			
 			
@@ -79,11 +100,25 @@ public class EleitorService {
 		return listaEleitor;
 	}
 	
-	public static boolean autenticar(String Titulo_eleitor, String Nome_eleitor, String Data, String Status, String Hora) throws SQLException {
+	public static boolean autenticar(String Titulo_eleitor) throws SQLException {
 		
-		List<Eleitor> listaEleitor = consultar(Titulo_eleitor, Nome_eleitor, Data, Status, Hora);;
+		List<Eleitor> listaEleitor = consultar(Titulo_eleitor);;
+		Eleitor valida = new Eleitor();
+		valida = listaEleitor.get(listaEleitor.size()-1);
+		if(!listaEleitor.isEmpty() && valida.getStatus().contentEquals("aguardando")){
+			return true;
+		} 
 		
-		if(!listaEleitor.isEmpty()){
+		else{
+			return false;
+		}
+	}
+	public static boolean autenticarLiberar(String Titulo_eleitor) throws SQLException {
+		
+		List<Eleitor> listaEleitor = consultar(Titulo_eleitor);;
+		Eleitor valida = new Eleitor();
+		valida = listaEleitor.get(listaEleitor.size()-1);
+		if(!listaEleitor.isEmpty() && valida.getStatus().equals("bloqueado") && valida.getData().equals("NULL")){
 			return true;
 		} 
 		

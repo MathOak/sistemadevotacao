@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 
 	/* Constantes com os parâmetros da conexão */
-	private static final String URL = "jdbc:mysql://localhost:3306/Urna_BD?useTimezone=true&serverTimezone=UTC";
+	private static final String URL = "jdbc:mysql://127.0.0.1:3306/urna_bd?useTimezone=true&serverTimezone=UTC";
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "";
 

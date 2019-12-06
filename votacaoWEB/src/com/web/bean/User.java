@@ -1,9 +1,19 @@
 package com.web.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.web.service.EleitorService;
+import com.web.service.MesarioService;
+
 public class User {
 	private String titulo;
 	private String nome;
 	private String senha;
+	Eleitor man = new Eleitor();
+	Mesario mes = new Mesario();
+	List<Eleitor> eleitorList = new ArrayList();
+	List<Mesario> mesarioList = new ArrayList();
 	
 	public User(String titulo){
 		this.titulo = titulo;
@@ -16,12 +26,12 @@ public class User {
 	public User(){
 	}
 
-	public String getLogin() {
+	public String getTitulo() {
 		return titulo;
 	}
 
-	public void setLogin(String login) {
-		this.titulo = login;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public String getNome() {
@@ -37,5 +47,56 @@ public class User {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	//ELEITOR
+	public boolean autenticouEleitor () {
+		try {
+			if(EleitorService.autenticar(getTitulo())) {
+				eleitorList = EleitorService.consultar(getTitulo());
+				man = eleitorList.get(eleitorList.size()-1);
+				return true;
+			}else
+				return false;
+		}catch (Exception e) {
+			return false;
+		}
+	}
+	public boolean autenticouEleitorLiberar (String titulo) {
+		try {
+			if(EleitorService.autenticarLiberar(titulo)) {
+				eleitorList = EleitorService.consultar(getTitulo());
+				man = eleitorList.get(eleitorList.size()-1);
+				return true;
+			}else
+				return false;
+		}catch (Exception e) {
+			return false;
+		}
+	}
+	public void salvarEleitor(Eleitor el) {
+		try{
+			EleitorService.update(el);
+		}catch (Exception e) {
+			
+		}
+	}
+	public Eleitor getEleitor(){
+		return man;
+	}
+	//MESARIO
+	public boolean autenticouMesario (String titulo, String senha) {
+		try {
+			if(MesarioService.autenticar(titulo, senha)) {
+				mesarioList = MesarioService.consultar(titulo, senha);
+				mes = mesarioList.get(mesarioList.size()-1);
+				return true;
+			}else
+				return false;
+		}catch (Exception e) {
+			return false;
+		}
+	}
+	public Mesario getMesario(){
+		return mes;
 	}
 }
