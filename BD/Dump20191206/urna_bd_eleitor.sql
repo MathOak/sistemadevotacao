@@ -16,29 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `mesario`
+-- Table structure for table `eleitor`
 --
 
-DROP TABLE IF EXISTS `mesario`;
+DROP TABLE IF EXISTS `eleitor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `mesario` (
-  `TituloMesario` varchar(20) NOT NULL,
-  `NomeMesario` varchar(45) NOT NULL,
-  `zonaEleitoral` varchar(5) NOT NULL,
-  `senha` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`zonaEleitoral`)
+CREATE TABLE `eleitor` (
+  `TituloELeitor` varchar(20) NOT NULL,
+  `NomeEleitor` varchar(45) NOT NULL,
+  `data` date DEFAULT NULL,
+  `status` varchar(20) DEFAULT 'bloqueado',
+  `hora` time DEFAULT NULL,
+  `Mesario_zonaEleitoral` varchar(5) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`TituloELeitor`,`Mesario_zonaEleitoral`),
+  KEY `fk_Eleitor_Mesario1_idx` (`Mesario_zonaEleitoral`),
+  CONSTRAINT `fk_Eleitor_Mesario1` FOREIGN KEY (`Mesario_zonaEleitoral`) REFERENCES `mesario` (`zonaEleitoral`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `mesario`
+-- Dumping data for table `eleitor`
 --
 
-LOCK TABLES `mesario` WRITE;
-/*!40000 ALTER TABLE `mesario` DISABLE KEYS */;
-INSERT INTO `mesario` VALUES ('1','Bob','0','123'),('1325','Matheus','5','1325');
-/*!40000 ALTER TABLE `mesario` ENABLE KEYS */;
+LOCK TABLES `eleitor` WRITE;
+/*!40000 ALTER TABLE `eleitor` DISABLE KEYS */;
+INSERT INTO `eleitor` VALUES ('132503020952','Pablo',NULL,'bloqueado',NULL,'0'),('295203021325','Filipe',NULL,'bloqueado',NULL,'0'),('330209521325','Cristiano',NULL,'bloqueado',NULL,'0');
+/*!40000 ALTER TABLE `eleitor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-05 16:38:11
+-- Dump completed on 2019-12-06 15:13:52

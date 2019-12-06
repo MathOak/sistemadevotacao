@@ -39,7 +39,7 @@ CREATE TABLE `candidato` (
 
 LOCK TABLES `candidato` WRITE;
 /*!40000 ALTER TABLE `candidato` DISABLE KEYS */;
-INSERT INTO `candidato` VALUES (13,'Pablo Vittar',0,'0'),(22,'Tilapia',0,'0'),(52,'Bob Esponja',0,'0');
+INSERT INTO `candidato` VALUES (11,'Bob Esponja',0,'0'),(22,'Lula Molusco',0,'0'),(33,'Patrick Estrela',0,'0'),(44,'Sirigueijo',0,'0'),(55,'Gary',0,'0');
 /*!40000 ALTER TABLE `candidato` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-05 16:38:12
+-- Dump completed on 2019-12-06 15:13:52

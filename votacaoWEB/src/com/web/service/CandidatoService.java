@@ -61,6 +61,30 @@ public class CandidatoService {
 		}
 	}
 	
+	public static void updateCandVot(Candidato candidato) throws SQLException {
+		Connection conexao = ConnectionFactory.getConnection();
+		
+		String sql = "UPDATE Candidato SET (Votos) VALUES (?) WHERE (NumeroCandidato) = (?)";
+
+		try {
+			
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, candidato.getVotos());
+			ps.setString(2, candidato.getNum_candidato());
+			
+			ps.executeUpdate();
+			conexao.commit();
+		} catch (SQLException e) {
+			// Erro, provoca um Rollback (volta ao estado anterior do banco)
+			conexao.rollback();
+			e.printStackTrace();
+			throw new SQLException();
+		} finally {
+			// fechar a conexão
+			conexao.close();
+		}
+	}
+	
 	public static List<Candidato> consultar(String Num_candidato, String Nome_candidato, String Votos) throws SQLException {
 		Connection conexao = ConnectionFactory.getConnection();
 		List<Candidato> listaCandidato = new ArrayList<Candidato>();
