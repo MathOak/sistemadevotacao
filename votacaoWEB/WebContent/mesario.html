@@ -1,4 +1,5 @@
 
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -6,14 +7,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.css"/> 
         <link rel="stylesheet" href="mesario.css"/> 
+		<script src="jquery-3.4.1.min.js"></script>
+        <script src="bootstrap-4.3.1-dist/js/bootstrap.js"></script>
         <script src="jscript.js"></script>
         <script>
-            function enviar(valor){
-            document.comando.acao.value=valor;
-            document.comando.submit();}
+
+            //function enviar(valor){
+            //document.comando.acao.value=valor;
+            //document.comando.submit();}
         </script>
-        <script src="jquery-3.4.1.min.js"></script>
-        <script src="bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+
         <title>Eleições 2019</title>
         <style>
 
@@ -27,10 +30,10 @@
                 <div class="col-sm-12 col-md-6" >
 		            
                         <table border='6'>
-                        <tr><td>Liberar eleitor para votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" data-toggle="modal" data-target="#ExemploModalCentralizado1">Liberar Eleitor</button></td></tr>
-                        <tr><td>Cabine de votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" data-toggle="modal" data-target="#ExemploModalCentralizado2">Liberar Cabine </button></td></tr>
-                        <tr><td>Cabine de votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" data-toggle="modal" data-target="#ExemploModalCentralizado3">Encerrar Cabine</button></td></tr>
-                        <tr><td>Relatorio de votos:</td><td><button type="button" class="btn btn--white mesmo-tamanho"  data-toggle="modal" data-target="#ExemploModalCentralizado4">Total de Votos</button></td></tr>
+                        <tr><td>Liberar eleitor para votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" id="ExemploModalCentralizado1">Liberar Eleitor</button></td></tr>
+                        <tr><td>Cabine de votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" id="ExemploModalCentralizado2">Liberar Cabine </button></td></tr>
+                        <tr><td>Cabine de votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" id="ExemploModalCentralizado3">Encerrar Cabine</button></td></tr>
+                        <tr><td>Relatorio de votos:</td><td><button type="button" class="btn btn--white mesmo-tamanho"  id="ExemploModalCentralizado4">Total de Votos</button></td></tr>
                         </table><br>
 						
 						
@@ -42,7 +45,7 @@
         </div>
 		
 		<!-- Modal liberar eleitor -->
-		<div class="modal fade" id="ExemploModalCentralizado1" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+		<div class="modal fade" id="ExemploModalCentralizado11" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">
@@ -67,7 +70,7 @@
 		
 				
 		<!-- Modal liberar cabine -->
-		<div class="modal fade" id="ExemploModalCentralizado2" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+		<div class="modal fade" id="ExemploModalCentralizado22" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">
@@ -92,7 +95,7 @@
 		
 				
 		<!-- Modal encerrar cabine -->
-		<div class="modal fade" id="ExemploModalCentralizado3" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+		<div class="modal fade" id="ExemploModalCentralizado33" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">
@@ -117,7 +120,7 @@
 		
 				
 		<!-- Modal relatorio de votos-->
-		<div class="modal fade" id="ExemploModalCentralizado4" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+		<div class="modal fade" id="ExemploModalCentralizado44" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">

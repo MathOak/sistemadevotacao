@@ -126,3 +126,29 @@ $(document).ready(function() {
         $('#pai').children(selectValor).show();
     });
 });
+
+
+//Abrir Modal Mesario
+$(function(){
+	$("#ExemploModalCentralizado1").click(function(){
+	$("#ExemploModalCentralizado11").modal();
+	});
+});
+
+$(function(){
+	$("#ExemploModalCentralizado2").click(function(){
+	$("#ExemploModalCentralizado22").modal();
+	});
+});
+
+$(function(){
+	$("#ExemploModalCentralizado3").click(function(){
+	$("#ExemploModalCentralizado33").modal();
+	});
+});
+
+$(function(){
+	$("#ExemploModalCentralizado4").click(function(){
+	$("#ExemploModalCentralizado44").modal();
+	});
+});

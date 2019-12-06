@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -29,10 +28,10 @@
                 <div class="col-sm-12 col-md-6" >
 		            
                         <table border='6'>
-                        <tr><td>Liberar eleitor para votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" data-toggle="modal" data-target="#ExemploModalCentralizado1">Liberar Eleitor</button></td></tr>
-                        <tr><td>Cabine de votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" data-toggle="modal" data-target="#ExemploModalCentralizado2">Liberar Cabine </button></td></tr>
-                        <tr><td>Cabine de votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" data-toggle="modal" data-target="#ExemploModalCentralizado3">Encerrar Cabine</button></td></tr>
-                        <tr><td>Relatorio de votos:</td><td><button type="button" class="btn btn--white mesmo-tamanho"  data-toggle="modal" data-target="#ExemploModalCentralizado4">Total de Votos</button></td></tr>
+                        <tr><td>Liberar eleitor para votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" id="ExemploModalCentralizado1">Liberar Eleitor</button></td></tr>
+                        <tr><td>Cabine de votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" id="ExemploModalCentralizado2">Liberar Cabine </button></td></tr>
+                        <tr><td>Cabine de votação:</td><td><button type="button" class="btn btn--white mesmo-tamanho" id="ExemploModalCentralizado3">Encerrar Cabine</button></td></tr>
+                        <tr><td>Relatorio de votos:</td><td><button type="button" class="btn btn--white mesmo-tamanho"  id="ExemploModalCentralizado4">Total de Votos</button></td></tr>
                         </table><br>
 						
 						
@@ -44,7 +43,7 @@
         </div>
 		
 		<!-- Modal liberar eleitor -->
-		<div class="modal fade" id="ExemploModalCentralizado1" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+		<div class="modal fade" id="ExemploModalCentralizado11" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">
@@ -69,7 +68,7 @@
 		
 				
 		<!-- Modal liberar cabine -->
-		<div class="modal fade" id="ExemploModalCentralizado2" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+		<div class="modal fade" id="ExemploModalCentralizado22" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">
@@ -94,7 +93,7 @@
 		
 				
 		<!-- Modal encerrar cabine -->
-		<div class="modal fade" id="ExemploModalCentralizado3" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+		<div class="modal fade" id="ExemploModalCentralizado33" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">
@@ -119,7 +118,7 @@
 		
 				
 		<!-- Modal relatorio de votos-->
-		<div class="modal fade" id="ExemploModalCentralizado4" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+		<div class="modal fade" id="ExemploModalCentralizado44" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">
