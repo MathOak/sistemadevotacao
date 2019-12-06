@@ -42,12 +42,12 @@ public class MesarioService {
 		Connection conexao = ConnectionFactory.getConnection();
 		List<Mesario> listaMesario = new ArrayList<Mesario>();
 		
-		String sql = "SELECT TituloMesario,NomeMesario,zonaEleitoral,senha FROM Mesario where TituloMesario=? senha=?";
+		String sql = "SELECT TituloMesario,NomeMesario,zonaEleitoral,senha FROM Mesario where TituloMesario=? and senha=?";
 
 		try {
 			PreparedStatement ps = conexao.prepareStatement(sql);
 			ps.setString(1, Titulo_mesario);
-			ps.setString(4, Senha);
+			ps.setString(2, Senha);
 			
 			ResultSet rs = ps.executeQuery();
 			

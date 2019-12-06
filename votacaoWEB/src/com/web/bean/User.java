@@ -93,7 +93,6 @@ public class User {
 			}else
 				return false;
 		}catch (Exception e) {
-			System.out.println("Erro de SQL"+ e.toString());
 			return false;
 		}
 	}

@@ -43,16 +43,16 @@ public class Controlador extends HttpServlet {
 		
 		if(acao.equals("inicio_eleitor")) {
 			//chama user> do user chamar eleitor
-			String titulo = request.getParameter("titulo");
+			/*String titulo = request.getParameter("titulo");
 			User eleitor = new User(titulo);
 			if(eleitor.autenticouEleitor()) {
 				request.getSession().setMaxInactiveInterval(300);
-				request.setAttribute("usuario", eleitor.getEleitor());
+				request.setAttribute("usuario", eleitor.getEleitor());*/
 				request.getRequestDispatcher("urna.jsp").forward(request, response);
-			}else {
+			/*}else {
 				request.setAttribute("erro", "1");
 				request.getRequestDispatcher("inicio.jsp").forward(request, response);
-			}
+			}*/
 			
 		} else if(acao.equals("inicio_mesario")) {
 			String titulo = request.getParameter("titulo");
