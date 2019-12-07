@@ -3,21 +3,25 @@
 
 
 
-<html>
+<!DOCTYPE html>
     <head>
+    <!--  jquery-3.4.1.min.js-->
+    	<script type="text/javascript" src="HTTP://AJAX.GOOGLEapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    	<script src="bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
         <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.css"/> 
         <link rel="stylesheet" href="mesario.css"/> 
-        <script src="jscript.js"></script>
+        
         <script>
             function enviar(valor){
             document.comando.acao.value=valor;
             document.comando.submit();}
         </script>
-        <script src="jquery-3.4.1.min.js"></script>
-        <script src="bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+        
+        
         <title>Eleições 2019</title>
         <style>
 
@@ -55,12 +59,13 @@
 				  <span aria-hidden="true">&times;</span>
 				</button>
 			  </div>
+			  <form name="comando" action="Controlador" method="post">
 			  <div class="modal-body">
-				Liberar Eleitor para Votação: <input type='text' name='libera_eleitor' placeholder="Titulo">
+				Liberar Eleitor para Votação: <input type='text' name='titulo' placeholder="Titulo">
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-				<form name="formulario" action="Controlador" method="post">
+				
 				<input type="hidden" name="acao">
 				<button type="button" class="btn btn-primary" onclick="enviar('liberar_eleitor')">Confirmar</button>
 				</form>
@@ -144,7 +149,7 @@
 		  </div>
 		</div>
 		
-				
+	<script src="jscript.js"></script>			
     </body>
 
 </html>
