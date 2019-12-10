@@ -112,9 +112,11 @@ public class User {
 	public boolean autenticouCandidatoRel (String id) {
 		try {
 			if(CandidatoService.autenticar(id)) {
-				Cand = CandidatoService.consultarUnico(titulo);
+				Cand = CandidatoService.consultarUnico(id);
+				System.out.println("Consultou!"+ Cand.getNome_candidato());
 				return true;
 			}else
+				System.out.println("Não existe");
 				return false;
 		}catch (Exception e) {
 			return false;

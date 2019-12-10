@@ -3,7 +3,7 @@ package com.web.bean;
 public class Candidato {
 	private String num_candidato;
 	private String nome_candidato;
-	private String votos;
+	private int votos;
 	private String zona_eleitoral;
 	
 	public String getNum_candidato() {
@@ -22,11 +22,11 @@ public class Candidato {
 		this.nome_candidato = nome_candidato;
 	}
 	
-	public String getVotos() {
+	public int getVotos() {
 		return votos;
 	}
 
-	public void setVotos(String votos) {
+	public void setVotos(int votos) {
 		this.votos = votos;
 	}
 	
