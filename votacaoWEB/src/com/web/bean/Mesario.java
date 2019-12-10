@@ -7,6 +7,10 @@ public class Mesario {
 	private String zona_eleitoral;
 	private String senha;
 	
+	public Mesario() {
+		
+	}
+	
 	public String getTitulo_mesario() {
 		return titulo_mesario;
 	}

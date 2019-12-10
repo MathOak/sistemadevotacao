@@ -9,6 +9,10 @@ public class Eleitor {
 	private String hora;
 	private String zona_eleitoral;
 	
+	public Eleitor() {
+		
+	}
+	
 	public String getTitulo_eleitor() {
 		return titulo_eleitor;
 	}

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.web.bean.Eleitor;
 import com.web.bean.User;
@@ -46,8 +47,9 @@ public class Controlador extends HttpServlet {
 			String titulo = request.getParameter("titulo");
 			User eleitor = new User(titulo);
 			if(eleitor.autenticouEleitor()) {
-				request.getSession().setMaxInactiveInterval(300);
-				request.setAttribute("usuario", eleitor.getEleitor());
+				HttpSession session = request.getSession();
+				session.setMaxInactiveInterval(300);
+				session.setAttribute("user", eleitor);
 				request.getRequestDispatcher("urna.jsp").forward(request, response);
 			}else {
 				request.setAttribute("erro", "1");
@@ -59,8 +61,12 @@ public class Controlador extends HttpServlet {
 			String senha = request.getParameter("senha");
 			User mesario = new User(titulo, senha);
 			if(mesario.autenticouMesario(mesario.getTitulo(), mesario.getSenha())) {
-				request.setAttribute("usuario", mesario.getEleitor());
-				request.getRequestDispatcher("mesario.jsp").forward(request, response);
+				HttpSession session = request.getSession();
+				session.setMaxInactiveInterval(600);
+				session.setAttribute("user", mesario);
+				request.setAttribute("list", mesario.getConsulta(titulo));
+				session.setAttribute("texto", "bacon");
+				request.getRequestDispatcher("Testes.jsp").forward(request, response);
 			}else {
 				request.setAttribute("erro", "2");
 				request.getRequestDispatcher("inicio.jsp").forward(request, response);
@@ -70,24 +76,29 @@ public class Controlador extends HttpServlet {
 			String titulo = request.getParameter("titulo");
 			User usuario = new User();
 			Eleitor modEleitor = new Eleitor();
-			usuario = (User) request.getAttribute("usuario");
-			if(usuario.autenticouEleitorLiberar(titulo)) {
+			usuario = (User) request.getSession().getAttribute("user");
+			if(usuario.autenticouEleitorLiberar(titulo)) {//mudar para variavel de sessão ou checar por que ta errado
 				modEleitor = usuario.getEleitor();
 				modEleitor.setStatus("aguardando");
 				usuario.salvarEleitor(modEleitor);
 				request.setAttribute("retorno", "Eleitor Liberado");
-				request.getRequestDispatcher("mesario.jsp").forward(request, response);
+				request.getRequestDispatcher("Testes.jsp").forward(request, response);
 			
 			}else {
 				request.setAttribute("erro", "3");
 				request.getRequestDispatcher("mesario.jsp").forward(request, response);
 			}
-			request.getRequestDispatcher("mesario.jsp").forward(request, response);
+			//request.getRequestDispatcher("mesario.jsp").forward(request, response);
 		} else if(acao.equals("liberar_cabine")) {
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
 		} else if(acao.equals("encerrar_cabine")) {
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
 		} else if(acao.equals("rel")) {
+			request.setAttribute("candidato11", "11");
+			request.setAttribute("candidato22", "22");
+			request.setAttribute("candidato33", "33");
+			request.setAttribute("candidato44", "44");
+			request.setAttribute("candidato55", "55");
 			request.getRequestDispatcher("relatorio.jsp").forward(request, response);
 		} else if(acao.equals("voto_val")) {
 			String idCandidato = request.getParameter("");

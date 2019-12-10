@@ -10,10 +10,10 @@ public class User {
 	private String titulo;
 	private String nome;
 	private String senha;
-	Eleitor man = new Eleitor();
-	Mesario mes = new Mesario();
-	List<Eleitor> eleitorList = new ArrayList();
-	List<Mesario> mesarioList = new ArrayList();
+	private Eleitor man = new Eleitor();
+	private Mesario mes = new Mesario();
+	private List<Eleitor> eleitorList = new ArrayList<Eleitor>();
+	private List<Mesario> mesarioList = new ArrayList<Mesario>();
 	
 	public User(String titulo){
 		this.titulo = titulo;
@@ -53,7 +53,7 @@ public class User {
 		try {
 			if(EleitorService.autenticar(getTitulo())) {
 				eleitorList = EleitorService.consultar(getTitulo());
-				man = eleitorList.get(eleitorList.size()-1);
+				man = (Eleitor) eleitorList.get(eleitorList.size()-1);
 				return true;
 			}else
 				return false;
@@ -65,7 +65,7 @@ public class User {
 		try {
 			if(EleitorService.autenticarLiberar(titulo)) {
 				eleitorList = EleitorService.consultar(getTitulo());
-				man = eleitorList.get(eleitorList.size()-1);
+				setEleitor(eleitorList.get(eleitorList.size()-1));
 				return true;
 			}else
 				return false;
@@ -80,9 +80,20 @@ public class User {
 			
 		}
 	}
+	public void setEleitor(Eleitor t1) {
+		man = t1;
+	}
 	public Eleitor getEleitor(){
 		return man;
 	}
+	public List<Eleitor> getConsulta(String titu) {
+		try {
+			return EleitorService.consultar(titu);
+		}catch (Exception e){
+			eleitorList.add(man);
+			return eleitorList;
+		}
+		}
 	//MESARIO
 	public boolean autenticouMesario (String titulo, String senha) {
 		try {
