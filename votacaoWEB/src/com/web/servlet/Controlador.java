@@ -56,6 +56,7 @@ public class Controlador extends HttpServlet {
 				request.getRequestDispatcher("inicio.jsp").forward(request, response);
 			}
 			
+		//---------------------------------------------------------
 		} else if(acao.equals("inicio_mesario")) {
 			String titulo = request.getParameter("titulo");
 			String senha = request.getParameter("senha");
@@ -66,12 +67,13 @@ public class Controlador extends HttpServlet {
 				session.setAttribute("user", mesario);
 				request.setAttribute("list", mesario.getConsulta(titulo));
 				session.setAttribute("texto", "bacon");
-				request.getRequestDispatcher("Testes.jsp").forward(request, response);
+				request.getRequestDispatcher("mesario.jsp").forward(request, response);
 			}else {
 				request.setAttribute("erro", "2");
 				request.getRequestDispatcher("inicio.jsp").forward(request, response);
 			}
 			
+		//------------------------------------------------------
 		} else if(acao.equals("liberar_eleitor")) {
 			String titulo = request.getParameter("titulo");
 			User usuario = new User();
@@ -79,28 +81,51 @@ public class Controlador extends HttpServlet {
 			usuario = (User) request.getSession().getAttribute("user");
 			if(usuario.autenticouEleitorLiberar(titulo)) {//mudar para variavel de sessão ou checar por que ta errado
 				modEleitor = usuario.getEleitor();
+				request.setAttribute("banco", usuario.getEleitor().getStatus());
+				request.setAttribute("servlet", modEleitor.getStatus());
 				modEleitor.setStatus("aguardando");
 				usuario.salvarEleitor(modEleitor);
 				request.setAttribute("retorno", "Eleitor Liberado");
-				request.getRequestDispatcher("Testes.jsp").forward(request, response);
+				request.getRequestDispatcher("mesario.jsp").forward(request, response);
 			
 			}else {
 				request.setAttribute("erro", "3");
 				request.getRequestDispatcher("mesario.jsp").forward(request, response);
 			}
 			//request.getRequestDispatcher("mesario.jsp").forward(request, response);
+		
+		//------------------------------------------------------
 		} else if(acao.equals("liberar_cabine")) {
+			User usuario = new User();
+			usuario = (User) request.getSession().getAttribute("user");
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
+		
+		//------------------------------------------------------
 		} else if(acao.equals("encerrar_cabine")) {
+			User usuario = new User();
+			usuario = (User) request.getSession().getAttribute("user");
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
+		
+		//------------------------------------------------------
 		} else if(acao.equals("rel")) {
-			request.setAttribute("candidato11", "11");
-			request.setAttribute("candidato22", "22");
-			request.setAttribute("candidato33", "33");
-			request.setAttribute("candidato44", "44");
-			request.setAttribute("candidato55", "55");
+			User usuario = new User();
+			usuario = (User) request.getSession().getAttribute("user");
+			if(usuario.autenticouCandidatoRel("11"))
+				request.setAttribute("candidato11", usuario.getCandidato().getVotos());
+			if(usuario.autenticouCandidatoRel("22"))
+				request.setAttribute("candidato22", usuario.getCandidato().getVotos());
+			if(usuario.autenticouCandidatoRel("33"))
+				request.setAttribute("candidato33", usuario.getCandidato().getVotos());
+			if(usuario.autenticouCandidatoRel("44"))
+				request.setAttribute("candidato44", usuario.getCandidato().getVotos());
+			if(usuario.autenticouCandidatoRel("55"))
+				request.setAttribute("candidato55", usuario.getCandidato().getVotos());
 			request.getRequestDispatcher("relatorio.jsp").forward(request, response);
+		
+		//------------------------------------------------------
 		} else if(acao.equals("voto_val")) {
+			User usuario = new User();
+			usuario = (User) request.getSession().getAttribute("user");
 			String idCandidato = request.getParameter("");
 			request.getRequestDispatcher("fim.jsp").forward(request, response);
 		}

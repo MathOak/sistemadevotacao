@@ -118,7 +118,7 @@ public class EleitorService {
 		List<Eleitor> listaEleitor = consultar(Titulo_eleitor);;
 		Eleitor valida = new Eleitor();
 		valida = listaEleitor.get(listaEleitor.size()-1);
-		if(!listaEleitor.isEmpty() && valida.getStatus().equals("bloqueado") && valida.getData().equals("NULL")){
+		if(!listaEleitor.isEmpty() && valida.getStatus().equals("bloqueado")){
 			return true;
 		} 
 		
@@ -128,8 +128,8 @@ public class EleitorService {
 	}
 	public static Eleitor consultUnico(String Titulo_eleitor) throws SQLException {
 		Connection conexao = ConnectionFactory.getConnection();
-		Eleitor eleitor = new Eleitor();
-		
+		Eleitor elei = new Eleitor();
+		List<Eleitor> listaEleitor = new ArrayList<Eleitor>();
 		
 		String sql = "SELECT TituloEleitor,NomeEleitor,data,status,hora FROM Eleitor where TituloEleitor=?";
 		
@@ -138,24 +138,27 @@ public class EleitorService {
 			ps.setString(1, Titulo_eleitor);
 			ResultSet rs = ps.executeQuery();
 			
-						
-			eleitor.setTitulo_eleitor(rs.getString("TituloEleitor"));
-			eleitor.setNome_eleitor(rs.getString("NomeEleitor"));
-			eleitor.setData(rs.getString("data"));
-			eleitor.setStatus(rs.getString("status"));
-			eleitor.setHora(rs.getString("hora"));
-			
-		
+			while(rs.next()){
+				Eleitor eleitor = new Eleitor();
+				eleitor.setTitulo_eleitor(rs.getString("TituloEleitor"));
+				eleitor.setNome_eleitor(rs.getString("NomeEleitor"));
+				eleitor.setData(rs.getString("data"));
+				eleitor.setStatus(rs.getString("status"));
+				eleitor.setHora(rs.getString("hora"));
+				listaEleitor.add(eleitor);
+			}
+			elei = listaEleitor.get(listaEleitor.size()-1);
 			
 			conexao.commit();
 		} catch (SQLException e) {
 			// Erro, provoca um Rollback (volta ao estado anterior do banco)
 			conexao.rollback();
+			elei.setStatus("FailConnection");
 		} finally {
 			// fechar a conexão
 			conexao.close();
 		}
 		
-		return eleitor;
+		return elei;
 	}
 }

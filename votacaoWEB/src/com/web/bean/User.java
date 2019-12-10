@@ -3,6 +3,7 @@ package com.web.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.web.service.CandidatoService;
 import com.web.service.EleitorService;
 import com.web.service.MesarioService;
 
@@ -10,8 +11,9 @@ public class User {
 	private String titulo;
 	private String nome;
 	private String senha;
-	private Eleitor man = new Eleitor();
+	private Eleitor Elei = new Eleitor();
 	private Mesario mes = new Mesario();
+	private Candidato Cand = new Candidato();
 	private List<Eleitor> eleitorList = new ArrayList<Eleitor>();
 	private List<Mesario> mesarioList = new ArrayList<Mesario>();
 	
@@ -53,7 +55,7 @@ public class User {
 		try {
 			if(EleitorService.autenticar(getTitulo())) {
 				eleitorList = EleitorService.consultar(getTitulo());
-				man = (Eleitor) eleitorList.get(eleitorList.size()-1);
+				Elei = (Eleitor) eleitorList.get(eleitorList.size()-1);
 				return true;
 			}else
 				return false;
@@ -64,8 +66,7 @@ public class User {
 	public boolean autenticouEleitorLiberar (String titulo) {
 		try {
 			if(EleitorService.autenticarLiberar(titulo)) {
-				eleitorList = EleitorService.consultar(getTitulo());
-				setEleitor(eleitorList.get(eleitorList.size()-1));
+				Elei = EleitorService.consultUnico(titulo);
 				return true;
 			}else
 				return false;
@@ -80,17 +81,14 @@ public class User {
 			
 		}
 	}
-	public void setEleitor(Eleitor t1) {
-		man = t1;
-	}
 	public Eleitor getEleitor(){
-		return man;
+		return Elei;
 	}
 	public List<Eleitor> getConsulta(String titu) {
 		try {
 			return EleitorService.consultar(titu);
 		}catch (Exception e){
-			eleitorList.add(man);
+			eleitorList.add(Elei);
 			return eleitorList;
 		}
 		}
@@ -109,5 +107,20 @@ public class User {
 	}
 	public Mesario getMesario(){
 		return mes;
+	}
+	//CANDIDATO
+	public boolean autenticouCandidatoRel (String id) {
+		try {
+			if(CandidatoService.autenticar(id)) {
+				Cand = CandidatoService.consultarUnico(titulo);
+				return true;
+			}else
+				return false;
+		}catch (Exception e) {
+			return false;
+		}
+	}
+	public Candidato getCandidato(){
+		return Cand;
 	}
 }

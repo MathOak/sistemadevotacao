@@ -133,16 +133,15 @@ public class CandidatoService {
 		}
 	}
 	
-	public static List<Candidato> consultar(String Num_candidato, String Nome_candidato) throws SQLException {
+	public static List<Candidato> consultar(String Num_candidato) throws SQLException {
 		Connection conexao = ConnectionFactory.getConnection();
 		List<Candidato> listaCandidato = new ArrayList<Candidato>();
 		
-		String sql = "SELECT NumeroCandidato,NomeCandidato FROM Candidato where NumeroCandidato=? and NomeCandidato=?";
+		String sql = "SELECT NumeroCandidato,NomeCandidaton,Votos FROM Candidato where NumeroCandidato=?";
 
 		try {
 			PreparedStatement ps = conexao.prepareStatement(sql);
 			ps.setString(1, Num_candidato);
-			ps.setString(2, Nome_candidato);
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -151,6 +150,7 @@ public class CandidatoService {
 				Candidato candidato = new Candidato();
 				candidato.setNum_candidato(rs.getString("NumeroCandidato"));
 				candidato.setNome_candidato(rs.getString("NomeCandidato"));
+				candidato.setVotos(rs.getString("Votos"));
 				listaCandidato.add(candidato);
 			}
 			
@@ -165,10 +165,44 @@ public class CandidatoService {
 		
 		return listaCandidato;
 	}
-	
-	public static boolean autenticar(String Num_candidato, String Nome_candidato) throws SQLException {
+	public static Candidato consultarUnico(String Num_candidato) throws SQLException {
+		Connection conexao = ConnectionFactory.getConnection();
+		List<Candidato> listaCandidato = new ArrayList<Candidato>();
+		Candidato cand = new Candidato();
+		String sql = "SELECT NumeroCandidato,NomeCandidaton,Votos FROM Candidato where NumeroCandidato=?";
+
+		try {
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, Num_candidato);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			
+			while(rs.next()){
+				Candidato candidato = new Candidato();
+				candidato.setNum_candidato(rs.getString("NumeroCandidato"));
+				candidato.setNome_candidato(rs.getString("NomeCandidato"));
+				candidato.setVotos(rs.getString("Votos"));
+				listaCandidato.add(candidato);
+			}
+			cand = listaCandidato.get(listaCandidato.size()-1);
+			
+			conexao.commit();
+		} catch (SQLException e) {
+			// Erro, provoca um Rollback (volta ao estado anterior do banco)
+			conexao.rollback();
+			cand.setVotos("FailConnection");
+		} finally {
+			// fechar a conexão
+			conexao.close();
+		}
 		
-		List<Candidato> listaCandidato = consultar(Num_candidato, Nome_candidato);;
+		return cand;
+	}
+	
+	public static boolean autenticar(String Num_candidato) throws SQLException {
+		
+		List<Candidato> listaCandidato = consultar(Num_candidato);;
 		
 		if(!listaCandidato.isEmpty()){
 			return true;
