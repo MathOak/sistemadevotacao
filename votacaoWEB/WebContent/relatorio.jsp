@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
 
+<%@page import="com.web.bean.Candidato" %>
+<%@page import="com.web.bean.User" %>
+
 <html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -7,6 +10,26 @@
 	<title>Eleições 2019</title>
 	<link rel="stylesheet" href="rel.css" media="screen"/>
     </style>
+
+	<%	User teste = new User();
+	Candidato cand1 = new Candidato();
+	Candidato cand2 = new Candidato();
+	Candidato cand3 = new Candidato();
+	Candidato cand4 = new Candidato();
+	Candidato cand5 = new Candidato();
+	
+	cand1 = request.getAttribute("candidato11");
+	cand2 = request.getAttribute("candidato22");
+	cand3 = request.getAttribute("candidato33");
+	cand4 = request.getAttribute("candidato44");
+	cand5 = request.getAttribute("candidato55");
+	
+	cand1.getVotos()
+	cand2.getVotos()
+	cand3.getVotos()
+	cand4.getVotos()
+	cand5.getVotos()	
+	%>		
 
 	</head>
 
@@ -21,7 +44,7 @@
 			</div>
 		</div>
 			<h3>Bob Esponja</h3>
-			<input id="tela" type="text" maxlength="2" class="form-control-lg tela-voto" readonly>
+			<input id="tela" type="text" value="<%=cand51etVotos()%>" maxlength="2" class="form-control-lg tela-voto" disabled>
 	</div>
 
 	<div class="clearfix container">
@@ -31,7 +54,7 @@
 			</div>
 		</div>
 			<h3>Patrick Estrela</h3>
-			<input id="tela" type="text" maxlength="2" class="form-control-lg tela-voto" readonly>
+			<input id="tela" type="text" value="<%=cand2.getVotos()%>" maxlength="2" class="form-control-lg tela-voto" disabled>
 	</div>
 	
 	<div class="clearfix container">
@@ -41,7 +64,7 @@
 			</div>
 		</div>
 			<h3>Lula Molusco</h3>
-			<input id="tela" type="text" maxlength="2" class="form-control-lg tela-voto" readonly>
+			<input id="tela" type="text" value="<%=cand3.getVotos()%>" maxlength="2" class="form-control-lg tela-voto" disabled>
 	</div>
 	
 	<div class="clearfix container">
@@ -51,7 +74,7 @@
 			</div>
 		</div>
 			<h3>Sirigueijo</h3>
-			<input id="tela" type="text" maxlength="2" class="form-control-lg tela-voto" readonly>
+			<input id="tela" type="text" value="<%=cand4.getVotos()%>" maxlength="2" class="form-control-lg tela-voto" disabled>
 	</div>
 
 	<div class="clearfix container">
@@ -61,7 +84,7 @@
 			</div>
 		</div>
 			<h3>Gary</h3>
-			<input id="tela" type="text" maxlength="2" class="form-control-lg tela-voto" readonly>
+			<input id="tela" type="text" value="<%=cand5.getVotos()%>" maxlength="2" class="form-control-lg tela-voto" disabled>
 	</div><br>
 	
 	<form id="botao-voltar">
