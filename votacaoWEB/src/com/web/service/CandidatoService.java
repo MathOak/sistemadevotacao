@@ -61,16 +61,16 @@ public class CandidatoService {
 		}
 	}
 	
-	public static void updateCandVot(Candidato candidato) throws SQLException {
+	public static void updateCandVot(String Votos, String Num_candidato) throws SQLException {
 		Connection conexao = ConnectionFactory.getConnection();
 		
-		String sql = "UPDATE Candidato SET (Votos) VALUES (?) WHERE (NumeroCandidato) = (?)";
+		String sql = "UPDATE Candidato SET Votos = ? WHERE NumeroCandidato = ?";
 
 		try {
 			
 			PreparedStatement ps = conexao.prepareStatement(sql);
-			ps.setString(1, candidato.getVotos());
-			ps.setString(2, candidato.getNum_candidato());
+			ps.setString(1, Votos);
+			ps.setString(2, Num_candidato);
 			
 			ps.executeUpdate();
 			conexao.commit();

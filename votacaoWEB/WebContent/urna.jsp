@@ -1,14 +1,14 @@
 <%@ page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
 
-<html>
+<!DOCTYPE html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <script type="text/javascript" src="HTTP://AJAX.GOOGLEapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.css"/> 
         <link rel="stylesheet" href="urna.css"/> 
         <script src="jscript.js"></script>
-        <script src="jquery-3.4.1.min.js"></script>
         <script src="bootstrap-4.3.1-dist/js/bootstrap.js"></script>
         <title>Eleições 2019</title>
         

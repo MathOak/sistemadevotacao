@@ -7,8 +7,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.css"/> 
         <link rel="stylesheet" href="fim.css"/> 
+		<script type="text/javascript" src="HTTP://AJAX.GOOGLEapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="jscript.js"></script>
-        <script src="jquery-3.4.1.min.js"></script>
         <script src="bootstrap-4.3.1-dist/js/bootstrap.js"></script>
         <title>Eleições 2019</title>
         <style>
@@ -22,7 +22,7 @@
 			function ChamarTemp(){
 				console.log("Passou");
 				setTimeout(function(){
-				window.location.href = "file:///C:/Users/Cristiano/Documents/GitHub/sistemadevotacao/votacaoWEB/WebContent/inicio.html";
+				window.location.href = "file:///C:/Users/PC/Documents/GitHub/sistemadevotacao/votacaoWEB/WebContent/inicio.html";
 				//location.reload();
 				}, 5000);
 			}
