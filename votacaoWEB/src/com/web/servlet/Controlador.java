@@ -111,19 +111,17 @@ public class Controlador extends HttpServlet {
 		} else if(acao.equals("rel")) {
 			User usuario = new User();
 			usuario = (User) request.getSession().getAttribute("user");
-			if(usuario.autenticouCandidatoRel("11")) {
-				request.setAttribute("candidato11", usuario.getCandidato().getVotos());
-				System.out.println(usuario.getCandidato().getNum_candidato());
-			}
+			if(usuario.autenticouCandidatoRel("11")) 
+				request.setAttribute("candidato11", usuario.getCandidato());
 			if(usuario.autenticouCandidatoRel("22"))
-				request.setAttribute("candidato22", usuario.getCandidato().getVotos());
+				request.setAttribute("candidato22", usuario.getCandidato());
 			if(usuario.autenticouCandidatoRel("33"))
-				request.setAttribute("candidato33", usuario.getCandidato().getVotos());
+				request.setAttribute("candidato33", usuario.getCandidato());
 			if(usuario.autenticouCandidatoRel("44"))
-				request.setAttribute("candidato44", usuario.getCandidato().getVotos());
+				request.setAttribute("candidato44", usuario.getCandidato());
 			if(usuario.autenticouCandidatoRel("55"))
-				request.setAttribute("candidato55", usuario.getCandidato().getVotos());
-			request.getRequestDispatcher("Testes.jsp").forward(request, response);
+				request.setAttribute("candidato55", usuario.getCandidato());
+			request.getRequestDispatcher("relatorio.jsp").forward(request, response);
 		
 		//------------------------------------------------------
 		} else if(acao.equals("voto_val")) {
