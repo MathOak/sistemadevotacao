@@ -126,4 +126,36 @@ public class EleitorService {
 			return false;
 		}
 	}
+	public static Eleitor consultUnico(String Titulo_eleitor) throws SQLException {
+		Connection conexao = ConnectionFactory.getConnection();
+		Eleitor eleitor = new Eleitor();
+		
+		
+		String sql = "SELECT TituloEleitor,NomeEleitor,data,status,hora FROM Eleitor where TituloEleitor=?";
+		
+		try {
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, Titulo_eleitor);
+			ResultSet rs = ps.executeQuery();
+			
+						
+			eleitor.setTitulo_eleitor(rs.getString("TituloEleitor"));
+			eleitor.setNome_eleitor(rs.getString("NomeEleitor"));
+			eleitor.setData(rs.getString("data"));
+			eleitor.setStatus(rs.getString("status"));
+			eleitor.setHora(rs.getString("hora"));
+			
+		
+			
+			conexao.commit();
+		} catch (SQLException e) {
+			// Erro, provoca um Rollback (volta ao estado anterior do banco)
+			conexao.rollback();
+		} finally {
+			// fechar a conexão
+			conexao.close();
+		}
+		
+		return eleitor;
+	}
 }
