@@ -24,11 +24,11 @@
 	cand4 = (Candidato)request.getAttribute("candidato44");
 	cand5 = (Candidato)request.getAttribute("candidato55");
 	
-	cand1.getVotos()
+/*	cand1.getVotos()
 	cand2.getVotos()
 	cand3.getVotos()
 	cand4.getVotos()
-	cand5.getVotos()	
+	cand5.getVotos()*/	
 	%>		
 
 	</head>
