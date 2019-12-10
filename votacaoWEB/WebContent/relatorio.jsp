@@ -18,11 +18,11 @@
 	Candidato cand4 = new Candidato();
 	Candidato cand5 = new Candidato();
 	
-	cand1 = request.getAttribute("candidato11");
-	cand2 = request.getAttribute("candidato22");
-	cand3 = request.getAttribute("candidato33");
-	cand4 = request.getAttribute("candidato44");
-	cand5 = request.getAttribute("candidato55");
+	cand1 = (Candidato)request.getAttribute("candidato11");
+	cand2 = (Candidato)request.getAttribute("candidato22");
+	cand3 = (Candidato)request.getAttribute("candidato33");
+	cand4 = (Candidato)request.getAttribute("candidato44");
+	cand5 = (Candidato)request.getAttribute("candidato55");
 	
 	cand1.getVotos()
 	cand2.getVotos()
@@ -44,7 +44,7 @@
 			</div>
 		</div>
 			<h3>Bob Esponja</h3>
-			<input id="tela" type="text" value="<%=cand51etVotos()%>" maxlength="2" class="form-control-lg tela-voto" disabled>
+			<input id="tela" type="text" value="<%=cand1.getVotos()%>" maxlength="2" class="form-control-lg tela-voto" disabled>
 	</div>
 
 	<div class="clearfix container">
