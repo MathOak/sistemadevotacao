@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.web.bean.Candidato;
 import com.web.bean.Eleitor;
 import com.web.bean.User;
 import com.web.service.EleitorService;
@@ -110,8 +111,10 @@ public class Controlador extends HttpServlet {
 		} else if(acao.equals("rel")) {
 			User usuario = new User();
 			usuario = (User) request.getSession().getAttribute("user");
-			if(usuario.autenticouCandidatoRel("11"))
+			if(usuario.autenticouCandidatoRel("11")) {
 				request.setAttribute("candidato11", usuario.getCandidato().getVotos());
+				System.out.println(usuario.getCandidato().getNum_candidato());
+			}
 			if(usuario.autenticouCandidatoRel("22"))
 				request.setAttribute("candidato22", usuario.getCandidato().getVotos());
 			if(usuario.autenticouCandidatoRel("33"))
@@ -120,7 +123,7 @@ public class Controlador extends HttpServlet {
 				request.setAttribute("candidato44", usuario.getCandidato().getVotos());
 			if(usuario.autenticouCandidatoRel("55"))
 				request.setAttribute("candidato55", usuario.getCandidato().getVotos());
-			request.getRequestDispatcher("relatorio.jsp").forward(request, response);
+			request.getRequestDispatcher("Testes.jsp").forward(request, response);
 		
 		//------------------------------------------------------
 		} else if(acao.equals("voto_val")) {
