@@ -14,6 +14,32 @@
 	<script src="JQuery-3.4.1.min.js"></script>
     <script src="jscript.js"></script>
 
+	<script>
+	/*
+	alert onclick javascript
+	var erro = '<%= request.getAttribute("erro") %>';
+	function alertaInicio(){
+		if (erro.value == "1"){
+		
+		alert("Eleitor não autenticado");
+		}
+	}--%>
+	
+	 alert para servlet
+		<div class="alert alert-sucess">
+		<h3>${erro1}</h3>
+		
+		ou 
+		
+	function alertaInicio(){
+		alert(${erro1});
+		}
+
+		
+	
+	*/
+	</script>
+
   </head>
 
   <body>
@@ -44,7 +70,7 @@
 			<form name="formulario" action="Controlador" method="post">
 			<input type="hidden" name="acao" value="inicio_eleitor">
               <table><tr><td> Titulo: <input type="text" name="titulo" title="Insira corretamente o Titulo de Eleitor" required pattern="^\d{12}$">
-								<button type="submit">Entrar</button></td></tr>
+								<button type="submit" onClick="alertaInicio()">Entrar</button></td></tr>
 				</table>
 			</form>
 			</div>
@@ -55,7 +81,7 @@
 			  <table>
 				<tr><td>Titulo:</td><td colspan='2'><input type="text" name="titulo" title="Insira corretamente o Titulo de Eleitor" required pattern="^\d{12}$"></td><td></td></tr>			
 				<tr><td>Senha:</td><td colspan="2"><input type="password" name="senha" title="" required pattern="^\d{4}$"></td><td></td></tr>
-				<tr><td colspan='3' align="right"><button type="submit">Entrar</button></td></tr>
+				<tr><td colspan='3' align="right"><button type="submit" onClick="alertaInicio()">Entrar</button></td></tr>
 				</table>
 			</form>
 			</div>

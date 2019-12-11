@@ -20,9 +20,9 @@
 			}
 			
 			function ChamarTemp(){
-				console.log("Passou");
+				
 				setTimeout(function(){
-				window.location.href = "file:///C:/Users/PC/Documents/GitHub/sistemadevotacao/votacaoWEB/WebContent/inicio.html";
+				window.location.href = "file:///C:/Users/PC/Documents/GitHub/sistemadevotacao/votacaoWEB/WebContent/inicio.jsp";
 				//location.reload();
 				}, 5000);
 			}

@@ -53,6 +53,9 @@ public class Controlador extends HttpServlet {
 				session.setAttribute("user", eleitor);
 				request.getRequestDispatcher("urna.jsp").forward(request, response);
 			}else {
+				/*request.setAttribute("erro1", "Eleitor não autenticado");
+				  RequestDispatcher rd = request.getRequestDispatcher("/inicio.jsp");
+				  rd.forward(request, response);*/
 				request.setAttribute("erro", "1");
 				request.getRequestDispatcher("inicio.jsp").forward(request, response);
 			}
