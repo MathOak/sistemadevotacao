@@ -15,29 +15,18 @@
     <script src="jscript.js"></script>
 
 	<script>
-	/*
-	alert onclick javascript
-	var erro = '<%= request.getAttribute("erro") %>';
-	function alertaInicio(){
-		if (erro.value == "1"){
-		
-		alert("Eleitor não autenticado");
-		}
-	}--%>
-	
-	 alert para servlet
-		<div class="alert alert-sucess">
-		<h3>${erro1}</h3>
-		
-		ou 
-		
-	function alertaInicio(){
-		alert(${erro1});
-		}
 
-		
+	var erro = '<%= request.getAttribute("erro") %>';
+	window.onload = function alertaInicio(){
+		if (erro == "1"){
 	
-	*/
+			alert("Eleitor não autenticado! Erro: "+erro);
+		}else if(erro == "2"){
+			
+			alert("Mesario não autenticado! Erro: "+erro);
+		}
+	}
+	
 	</script>
 
   </head>

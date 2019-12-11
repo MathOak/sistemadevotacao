@@ -22,7 +22,7 @@
 			function ChamarTemp(){
 				
 				setTimeout(function(){
-				window.location.href = "file:///C:/Users/PC/Documents/GitHub/sistemadevotacao/votacaoWEB/WebContent/inicio.jsp";
+				window.location.href = "http://localhost:8080/votacaoWEB/inicio.jsp";
 				//location.reload();
 				}, 5000);
 			}

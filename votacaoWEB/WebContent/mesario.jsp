@@ -19,6 +19,14 @@
             function enviar(valor){
             document.comando.acao.value=valor;
             document.comando.submit();}
+            
+            var erro = '<%= request.getAttribute("erro") %>';
+        	window.onload = function alertaInicio(){
+        		if (erro == "3"){
+        	
+        			alert("Eleitor não autenticado! Erro: "+erro);
+        		}
+        	}
         </script>
         
         
@@ -43,7 +51,7 @@
 						
 						
 						<form id="botao-voltar">
-						<input type="button" value="Voltar" onClick="history.go(-1)">
+						<input type="button" value="Voltar" onClick="window.location.href = 'http://localhost:8080/votacaoWEB/inicio.jsp';">
 						</form>	
                 </div>
             </div>
@@ -67,7 +75,7 @@
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 				
 				<input type="hidden" name="acao">
-				<button type="button" class="btn btn-primary" onclick="enviar('liberar_eleitor')">Confirmar</button>
+				<button type="button" class="btn btn-primary" onclick="enviar('liberar_eleitor'); alertaInicio();">Confirmar</button>
 				</form>
 			  </div>
 			</div>
