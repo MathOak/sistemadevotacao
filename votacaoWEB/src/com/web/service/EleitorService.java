@@ -180,7 +180,7 @@ public class EleitorService {
 		if(!listaEleitor.isEmpty()) {
 			for (int i = 0; i < listaEleitor.size(); i++) {
 				valida = listaEleitor.get(i);
-				if(!valida.getStatus().equals("fechado")) {
+				if(valida.getStatus().equals("fechado")) {
 					valida.setStatus("bloqueado");
 					update(valida);
 					System.out.println(valida.getNome_eleitor());
