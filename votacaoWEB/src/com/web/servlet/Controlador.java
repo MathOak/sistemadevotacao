@@ -127,6 +127,7 @@ public class Controlador extends HttpServlet {
 		} else if(acao.equals("voto_val")) {
 			User usuario = new User();
 			Candidato cand = new Candidato();
+			Eleitor lei = new Eleitor();
 			usuario = (User) request.getSession().getAttribute("user");
 			String idCandidato = request.getParameter("candidato");
 			if(idCandidato.equals("NULO")) {
@@ -136,6 +137,13 @@ public class Controlador extends HttpServlet {
 					cand = usuario.getCandidato();
 					cand.setVotos(cand.getVotos()+1);
 					usuario.salvarCandidato(cand);
+					System.out.println(usuario.getTitulo());
+					if(usuario.autenticouEleitorLiberar(usuario.getTitulo())) {
+						lei = usuario.getEleitor();
+						System.out.println(lei.getNome_eleitor());
+						lei.setStatus("votou");
+						usuario.salvarEleitor(lei);
+					}
 				}
 			}
 			request.getRequestDispatcher("fim.jsp").forward(request, response);
