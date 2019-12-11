@@ -53,6 +53,8 @@ visibility: hidden;
 	height: 135px;
     max-width: 120px;
     width: 120px;
-    font-size: 28pt;
+    font-size: 60pt;
+	font-family: 'impact';
+	text-align:center;
     background: #eeeeee;
 }
