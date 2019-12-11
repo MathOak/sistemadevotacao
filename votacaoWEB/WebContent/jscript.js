@@ -92,7 +92,18 @@ function validarBranco(){
     nomeModal.innerHTML = "Em Branco";
 
 }
-
+/*function enviar(valor){
+	var tela = document.querySelector('#tela');
+	if(tela.value == 11 || tela.value == 22 || tela.value == 33 || tela.value == 44 || tela.value == 55){
+		document.comando.candidato.value = tela.value;
+		document.comando.acao.value=valor;
+		document.comando.submit();
+	}else{
+		document.comando.candidato.value="NULO";
+		document.comando.acao.value=valor;
+		document.comando.submit();
+	}
+}*/
 function validar(){
 }
 

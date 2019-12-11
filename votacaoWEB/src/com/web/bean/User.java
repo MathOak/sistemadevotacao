@@ -122,6 +122,13 @@ public class User {
 			return false;
 		}
 	}
+	public void salvarCandidato(Candidato cand) {
+		try{
+			CandidatoService.updateCandVot(cand);
+		}catch (Exception e) {
+			
+		}
+	}
 	public Candidato getCandidato(){
 		return Cand;
 	}

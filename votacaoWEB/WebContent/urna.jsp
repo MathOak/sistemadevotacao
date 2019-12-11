@@ -8,17 +8,23 @@
         <script type="text/javascript" src="HTTP://AJAX.GOOGLEapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.css"/> 
         <link rel="stylesheet" href="urna.css"/> 
+        <script>
+        function enviar(valor){
+        	var tela = document.querySelector('#tela');
+        	if(tela.value == 11 || tela.value == 22 || tela.value == 33 || tela.value == 44 || tela.value == 55){
+        		document.comando.candidato.value = tela.value;
+        		document.comando.acao.value=valor;
+        		document.comando.submit();
+        	}else{
+        		document.comando.candidato.value="NULO";
+        		document.comando.acao.value=valor;
+        		document.comando.submit();
+        	}
+        }</script>
         <script src="jscript.js"></script>
         <script src="bootstrap-4.3.1-dist/js/bootstrap.js"></script>
         <title>Eleições 2019</title>
-        
-        <script type="text/javascript">
-			function enviar(valor){
-				document.formulario.acao.value=valor;
-				document.formulario.submit();
-			}
-		</script>
-        
+    
     </head>
     <body class="">
         <div class="container">
@@ -93,10 +99,11 @@
                                 <h1><span id="nomeModal">Anular Voto</span></h1>
                             </div>
                             <div class="modal-footer">
-                                <form name='formulario' action='Controlador' method='post'>
+                                <form name='comando' action='Controlador' method='post'>
+									<input type='hidden' name='candidato'>
 									<input type='hidden' name='acao'>
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>                              
-                             		<button type="button" class="btn btn-primary" value='voto_val' onclick='enviar(2)'>Confirmar</button>
+                             		<button type="button" class="btn btn-primary" value='voto_val' onclick="enviar('voto_val')">Confirmar</button>
                              	</form>
                             </div>
                         </div>

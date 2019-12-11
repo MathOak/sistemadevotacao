@@ -126,8 +126,18 @@ public class Controlador extends HttpServlet {
 		//------------------------------------------------------
 		} else if(acao.equals("voto_val")) {
 			User usuario = new User();
+			Candidato cand = new Candidato();
 			usuario = (User) request.getSession().getAttribute("user");
-			String idCandidato = request.getParameter("");
+			String idCandidato = request.getParameter("candidato");
+			if(idCandidato.equals("NULO")) {
+				request.getRequestDispatcher("fim.jsp").forward(request, response);
+			}else {
+				if(usuario.autenticouCandidatoRel(idCandidato)) {
+					cand = usuario.getCandidato();
+					cand.setVotos(cand.getVotos()+1);
+					usuario.salvarCandidato(cand);
+				}
+			}
 			request.getRequestDispatcher("fim.jsp").forward(request, response);
 		}
 	}
