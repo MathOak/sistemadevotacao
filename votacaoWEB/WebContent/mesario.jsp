@@ -20,12 +20,23 @@
             document.comando.acao.value=valor;
             document.comando.submit();}
             
+            var erro = null;
+            var retorno = null;
             var erro = '<%= request.getAttribute("erro") %>';
+            var retorno = '<%= request.getAttribute("retorno") %>';
         	window.onload = function alertaInicio(){
-        		if (erro == "3"){
-        	
-        			alert("Eleitor não autenticado! Erro: "+erro);
-        		}
+        		if (erro == "3")
+     				alert("Eleitor não autenticado!");
+        		else if (erro == "4")
+        			alert("Erro ao Liberar Cabine!");
+        		else if (erro == "5")
+        			alert("Erro ao Encerrar Cabine!");
+        		else if (retorno == "Eleitor Liberado")
+					alert("Eleitor Liberado!");
+        		else if (retorno == "Cabine Liberada")
+					alert("Cabine Liberada!");
+        		else if (retorno == "Cabine Encerrada")
+					alert("Cabine Encerrada!");
         	}
         </script>
         

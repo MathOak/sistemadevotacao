@@ -15,15 +15,15 @@
     <script src="jscript.js"></script>
 
 	<script>
-
+	var erro = null;
 	var erro = '<%= request.getAttribute("erro") %>';
 	window.onload = function alertaInicio(){
 		if (erro == "1"){
 	
-			alert("Eleitor não autenticado! Erro: "+erro);
+			alert("Eleitor não autenticado!");
 		}else if(erro == "2"){
 			
-			alert("Mesario não autenticado! Erro: "+erro);
+			alert("Mesario não autenticado!");
 		}
 	}
 	
