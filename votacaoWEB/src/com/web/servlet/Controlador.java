@@ -99,12 +99,20 @@ public class Controlador extends HttpServlet {
 		} else if(acao.equals("liberar_cabine")) {
 			User usuario = new User();
 			usuario = (User) request.getSession().getAttribute("user");
+			if(usuario.cabineLiberar())
+				request.setAttribute("retorno", "Cabine Liberada");
+			else
+				request.setAttribute("erro", "4");
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
 		
 		//------------------------------------------------------
 		} else if(acao.equals("encerrar_cabine")) {
 			User usuario = new User();
 			usuario = (User) request.getSession().getAttribute("user");
+			if(usuario.cabineEncerrar())
+				request.setAttribute("retorno", "Cabine Encerrada");
+			else
+				request.setAttribute("erro", "5");
 			request.getRequestDispatcher("mesario.jsp").forward(request, response);
 		
 		//------------------------------------------------------
@@ -133,17 +141,15 @@ public class Controlador extends HttpServlet {
 			if(idCandidato.equals("NULO")) {
 				request.getRequestDispatcher("fim.jsp").forward(request, response);
 			}else {
-				if(usuario.autenticouCandidatoRel(idCandidato)) {
+				if(usuario.autenticouCandidatoRel(idCandidato) && usuario.autenticouEleitorVotou(usuario.getTitulo())) {
 					cand = usuario.getCandidato();
 					cand.setVotos(cand.getVotos()+1);
 					usuario.salvarCandidato(cand);
 					System.out.println(usuario.getTitulo());
-					if(usuario.autenticouEleitorLiberar(usuario.getTitulo())) {
-						lei = usuario.getEleitor();
-						System.out.println(lei.getNome_eleitor());
-						lei.setStatus("votou");
-						usuario.salvarEleitor(lei);
-					}
+					lei = usuario.getEleitor();
+					System.out.println(lei.getNome_eleitor());
+					lei.setStatus("votou");
+					usuario.salvarEleitor(lei);
 				}
 			}
 			request.getRequestDispatcher("fim.jsp").forward(request, response);

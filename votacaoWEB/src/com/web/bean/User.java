@@ -74,6 +74,39 @@ public class User {
 			return false;
 		}
 	}
+	public boolean autenticouEleitorVotou (String titulo) {
+		try {
+			if(EleitorService.autenticarVotou(titulo)) {
+				Elei = EleitorService.consultUnico(titulo);
+				return true;
+			}else
+				return false;
+		}catch (Exception e) {
+			return false;
+		}
+	}
+	public boolean cabineLiberar () {
+		try {
+			if(EleitorService.cabineLiberar()) {
+				return true;
+			}else
+				return false;
+		}catch (Exception e) {
+			System.out.println(e.toString());
+			return false;
+		}
+	}
+	public boolean cabineEncerrar () {
+		try {
+			if(EleitorService.cabineEncerrar()) {
+				return true;
+			}else
+				return false;
+		}catch (Exception e) {
+			System.out.println(e.toString());
+			return false;
+		}
+	}
 	public void salvarEleitor(Eleitor el) {
 		try{
 			EleitorService.update(el);

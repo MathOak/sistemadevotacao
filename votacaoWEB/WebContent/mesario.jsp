@@ -90,7 +90,7 @@
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-				<form name="formulario" action="Controlador" method="post">
+				<form name="comando2" action="Controlador" method="post">
 				<input type="hidden" name="acao">
 				<button type="button" class="btn btn-primary" onclick="enviar('liberar_cabine')">Confirmar</button>
 				</form>
@@ -115,7 +115,7 @@
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-				<form name="formulario" action="Controlador" method="post">
+				<form name="comando3" action="Controlador" method="post">
 				<input type="hidden" name="acao">
 				<button type="button" class="btn btn-primary" onclick="enviar('encerrar_cabine')">Confirmar</button>
 				</form>
@@ -140,7 +140,7 @@
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-				<form name="formulario" action="Controlador" method="post">
+				<form name="comando4" action="Controlador" method="post">
 				<input type="hidden" name="acao">
 				<button type="button" class="btn btn-primary" onclick="enviar('rel')">Confirmar</button>
 				</form>

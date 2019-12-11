@@ -99,6 +99,39 @@ public class EleitorService {
 		
 		return listaEleitor;
 	}
+	public static List<Eleitor> consultar() throws SQLException {
+		Connection conexao = ConnectionFactory.getConnection();
+		List<Eleitor> listaEleitor = new ArrayList<Eleitor>();
+		
+		String sql = "SELECT TituloEleitor,NomeEleitor,data,status,hora FROM Eleitor";
+
+		try {
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			
+			while(rs.next()){
+				Eleitor eleitor = new Eleitor();
+				eleitor.setTitulo_eleitor(rs.getString("TituloEleitor"));
+				eleitor.setNome_eleitor(rs.getString("NomeEleitor"));
+				eleitor.setData(rs.getString("data"));
+				eleitor.setStatus(rs.getString("status"));
+				eleitor.setHora(rs.getString("hora"));
+				listaEleitor.add(eleitor);
+			}
+			
+			conexao.commit();
+		} catch (SQLException e) {
+			// Erro, provoca um Rollback (volta ao estado anterior do banco)
+			conexao.rollback();
+		} finally {
+			// fechar a conexão
+			conexao.close();
+		}
+		
+		return listaEleitor;
+	}
+
 	
 	public static boolean autenticar(String Titulo_eleitor) throws SQLException {
 		
@@ -119,6 +152,76 @@ public class EleitorService {
 		Eleitor valida = new Eleitor();
 		valida = listaEleitor.get(listaEleitor.size()-1);
 		if(!listaEleitor.isEmpty() && valida.getStatus().equals("bloqueado")){
+			return true;
+		} 
+		
+		else{
+			return false;
+		}
+	}
+	public static boolean autenticarVotou(String Titulo_eleitor) throws SQLException {
+		
+		List<Eleitor> listaEleitor = consultar(Titulo_eleitor);;
+		Eleitor valida = new Eleitor();
+		valida = listaEleitor.get(listaEleitor.size()-1);
+		if(!listaEleitor.isEmpty() && valida.getStatus().equals("aguardando")){
+			return true;
+		} 
+		
+		else{
+			return false;
+		}
+	}
+	public static boolean cabineLiberar() throws SQLException {
+		
+		List<Eleitor> listaEleitor = consultar();;
+		Eleitor valida = new Eleitor();
+		System.out.println(listaEleitor);
+		if(!listaEleitor.isEmpty()) {
+			for (int i = 0; i < listaEleitor.size(); i++) {
+				valida = listaEleitor.get(i);
+				if(!valida.getStatus().equals("fechado")) {
+					valida.setStatus("bloqueado");
+					update(valida);
+					System.out.println(valida.getNome_eleitor());
+				}
+			}
+			return true;
+		}
+		
+		else{
+			System.out.println("Erro na lista");
+			return false;
+		}
+	}
+	public static boolean cabineEncerrar() throws SQLException {
+		
+		List<Eleitor> listaEleitor = consultar();;
+		Eleitor valida = new Eleitor();
+		System.out.println(listaEleitor);
+		if(!listaEleitor.isEmpty()) {
+			for (int i = 0; i < listaEleitor.size(); i++) {
+				valida = listaEleitor.get(i);
+				if(!valida.getStatus().equals("votou")) {
+					valida.setStatus("fechado");
+					update(valida);
+					System.out.println(valida.getNome_eleitor());
+				}
+			}
+			return true;
+		}
+		
+		else{
+			System.out.println("Erro na lista");
+			return false;
+		}
+	}
+	public static boolean cabineLiberar(String Titulo_eleitor) throws SQLException {
+		
+		List<Eleitor> listaEleitor = consultar(Titulo_eleitor);;
+		Eleitor valida = new Eleitor();
+		valida = listaEleitor.get(listaEleitor.size()-1);
+		if(!listaEleitor.isEmpty() && valida.getStatus().equals("aguardando")){
 			return true;
 		} 
 		
